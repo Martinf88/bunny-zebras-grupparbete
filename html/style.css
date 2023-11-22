@@ -37,32 +37,54 @@ body {
 }
 
 .hangman {
-	visibility: hidden;
-	visibility: visible;
+	/* visibility: hidden; */
+	/* visibility: visible; */
 }
 
 #scaffold {
 	/* visibility: hidden; */
-	visibility: visible;
+	/* visibility: visible; */
 }
 
 #head {
  	/* visibility: hidden; */
-	visibility: visible;
+	/* visibility: visible; */
 }
 
 #body {
 	/* visibility: hidden; */
-	visibility: visible;
+	/* visibility: visible; */
 }
 
 #arms {
 	/* visibility: hidden; */
-	visibility: visible;
+	/* visibility: visible; */
 }
 
 #legs {
 	/* visibility: hidden; */
+	/* visibility: visible; */
+}
+
+#the-word {
+	/* visibility: hidden; */
+}
+
+#guesses {
+	/* visibility: hidden; */
+}
+
+.underline {
+	font-size: 3rem;
+	text-decoration:underline dashed;
+	text-decoration-color: red;
+}
+
+.gamer-container {
 	visibility: visible;
+}
+
+.hidden {
+	visibility: hidden;
 }
 /* <-------------------------------------------------------------------------------------------> */
