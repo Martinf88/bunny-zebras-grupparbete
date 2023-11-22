@@ -15,7 +15,6 @@ const normalBtn = document.querySelector('.normal')
 const theWord = document.querySelector('#the-word')
 const guesses = document.querySelector('#guesses')
 const underline = document.querySelector('.underline')
-// const hidden = document.querySelector('.hidden')
 
 normalBtn.addEventListener('click', () => {
 	playContainer.classList.add('hidden')
