@@ -76,8 +76,8 @@ body {
 
 .underline {
 	font-size: 3rem;
-	text-decoration:underline dashed;
-	text-decoration-color: red;
+	/* text-decoration:underline dashed;
+	text-decoration-color: red; */
 }
 
 .gamer-container {
@@ -86,5 +86,10 @@ body {
 
 .hidden {
 	visibility: hidden;
+}
+
+#player-name {
+	font-size: 3rem;
+	text-shadow: #000 1px 0 0.5rem;
 }
 /* <-------------------------------------------------------------------------------------------> */
