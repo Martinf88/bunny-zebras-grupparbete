@@ -81,6 +81,10 @@ body {
 	text-decoration-color: red;
 } */
 
+.game-over-container {
+	border: 2px solid red;
+}
+
 .gamer-container {
 	visibility: visible;
 }

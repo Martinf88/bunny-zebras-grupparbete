@@ -37,7 +37,7 @@ import { words } from './svenska-ord.js'
 
 const theWord = document.querySelector('#the-word');
 const randomIndex = Math.floor(Math.random() * words.length);
-const randomWord = words[randomIndex].toUpperCase();
+export const randomWord = words[randomIndex].toUpperCase();
 // const guesses = document.querySelector('#guesses')
 
 function generateWord() {
