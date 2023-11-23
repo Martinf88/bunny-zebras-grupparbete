@@ -39,6 +39,7 @@ const ground = document.querySelector('#ground')
 const theWord = document.querySelector('#the-word');
 const randomIndex = Math.floor(Math.random() * words.length);
 const randomWord = words[randomIndex].toUpperCase();
+// const guesses = document.querySelector('#guesses')
 
 function generateWord() {
 	let hiddenLetters = Array(randomWord.length).fill('_');
