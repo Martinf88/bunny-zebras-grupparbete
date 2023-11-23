@@ -93,10 +93,7 @@ body {
 	visibility: hidden;
 }
 
-<<<<<<< HEAD
-.felord {
 
-=======
 .high-score-container {
 	text-align: center;
 }
@@ -109,6 +106,5 @@ body {
 	list-style-type: none;
 	padding-left: 0;
 	border: 1px solid black;
->>>>>>> high-score
 }
 /* <-------------------------------------------------------------------------------------------> */
