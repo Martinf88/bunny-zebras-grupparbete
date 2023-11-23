@@ -10,3 +10,4 @@ console.log(randomWord);
 
 winMessage.classList.add('hidden')
 lossMessage.classList.add('hidden')
+
