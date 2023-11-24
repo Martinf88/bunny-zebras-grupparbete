@@ -4,11 +4,12 @@ import { words } from './svenska-ord.js'
 // const playContainer = document.querySelector('.play-container')
 // const gamerContainer = document.querySelector('.gamer-container')
 // const hangMan = document.querySelector('.hangman')
-// const scaffold = document.querySelector('#scaffold')
-// const head = document.querySelector('#head')
-// const body = document.querySelector('#body')
-// const arms = document.querySelector('#arms')
-// const legs = document.querySelector('#legs')
+const scaffold = document.querySelector('#scaffold')
+const head = document.querySelector('#head')
+const body = document.querySelector('#body')
+const arms = document.querySelector('#arms')
+const legs = document.querySelector('#legs')
+const ground = document.querySelector('#ground')
 // const playerInput = document.querySelector('#player-input')
 // const difficulty = document.querySelector('.difficulty')
 // const normalBtn = document.querySelector('.normal')
@@ -20,8 +21,8 @@ import { words } from './svenska-ord.js'
 // normalBtn.addEventListener('click', () => {
 // 	playContainer.classList.add('hidden')
 	
-	// theWord.style.visibility('hidden')
-	// theWord.classlist.add('hidden');
+// 	theWord.style.visibility('hidden')
+// 	theWord.classlist.add('hidden');
 // })
 
 
@@ -34,10 +35,10 @@ import { words } from './svenska-ord.js'
 // senare skall varje knapptryckning visas i guesses
 // alla ord skall konverteras till lowercase
 
-
+const minWordLength = words.filter(word => word.length >= 10);
 const theWord = document.querySelector('#the-word');
-const randomIndex = Math.floor(Math.random() * words.length);
-const randomWord = words[randomIndex].toUpperCase();
+const randomIndex = Math.floor(Math.random() * minWordLength.length);
+export const randomWord = minWordLength[randomIndex].toUpperCase();
 // const guesses = document.querySelector('#guesses')
 
 function generateWord() {
@@ -56,11 +57,11 @@ function generateWord() {
 		  }
 		});
 		theWord.innerText = hiddenLetters.join(' ');
-	}
-	// guesses.innerText = pressedKey
-	
+	  }
+	else (!randomWord.includes(pressedKey)) 
+	scaffold.style.opacity = '1';
 	});
-	console.log('hej');
+	// console.log('hej');  //tillfäligt bortaget
 }
 
 
@@ -82,7 +83,12 @@ function startGame() {
         alert('Vänligen ange ditt namn innan du startar spelet. Minst två tecken.');
         return;
     }
-    playContainer.style.opacity = '0';
+	
+    // playContainer.style.opacity = '0';
+
+	fullBody.forEach(element => {
+		element.style.display = "none"
+	})
     playerNameContainer.innerHTML = `<p id="player-name">Spelare: ${playerName}</p>`;
     playerNameContainer.style.display = 'flex';
 
@@ -90,7 +96,4 @@ function startGame() {
 }
 
 
-
-
-
-
+const fullBody = [ground, scaffold, head, body, arms, legs]
