@@ -20,7 +20,7 @@ const ground = document.querySelector('#ground')
 
 // normalBtn.addEventListener('click', () => {
 // 	playContainer.classList.add('hidden')
-	
+
 // 	theWord.style.visibility('hidden')
 // 	theWord.classlist.add('hidden');
 // })
@@ -41,38 +41,44 @@ const randomIndex = Math.floor(Math.random() * minWordLength.length);
 export const randomWord = minWordLength[randomIndex].toUpperCase();
 // const guesses = document.querySelector('#guesses')
 
+let incorrectGuesses = 0;
+const maxIncorrectGuesses = 5;
+
 function generateWord() {
 	let hiddenLetters = Array(randomWord.length).fill('_');
-	
-	theWord.innerText = hiddenLetters.join(' ');
-	console.log(theWord);
-	
-	document.addEventListener('keydown', (event) => {
-	  const pressedKey = event.key.toUpperCase();
-	
-	  if (randomWord.includes(pressedKey)) {
-		randomWord.split('').forEach((char, index) => {
-		  if (char === pressedKey) {
-			hiddenLetters[index] = pressedKey;
-		  }
-		});
-		theWord.innerText = hiddenLetters.join(' ');
-	  }
-	else (!randomWord.includes(pressedKey)) 
-	// fullBody.forEach(element) 
-	scaffold.style.display = 'block';
-	// head.style.display = 'block';
-	});
-	// console.log('hej');  //tillfäligt bortaget
-}
 
+	theWord.innerText = hiddenLetters.join(' ');
+
+	document.addEventListener('keydown', (event) => {
+		const pressedKey = event.key.toUpperCase();
+
+		if (randomWord.includes(pressedKey)) {
+			randomWord.split('').forEach((char, index) => {
+				if (char === pressedKey) {
+					hiddenLetters[index] = pressedKey;
+				}
+			});
+			theWord.innerText = hiddenLetters.join(' ');
+            if (!hiddenLetters.includes('_')) {
+                endGame(true); // Game over with a win
+            }
+		} else {
+			revealHangmanPart();
+			incorrectGuesses++;
+
+			if (incorrectGuesses >= maxIncorrectGuesses) {
+				endGame(false);
+			}
+		}
+	});
+}
 
 const playContainer = document.querySelector('.play-container')
 const normalBtn = document.querySelector('.normal')
 const playerInput = document.querySelector('#player-input')
 const gamerContainer = document.querySelector('.gamer-container')
 
-normalBtn.addEventListener('click', startGame );
+normalBtn.addEventListener('click', startGame);
 const playerNameContainer = document.createElement('div');
 playerNameContainer.className = 'page';
 playerNameContainer.style.display = 'none';
@@ -80,22 +86,41 @@ gamerContainer.insertAdjacentElement('afterend', playerNameContainer);
 
 function startGame() {
 
-    const playerName = playerInput.value;
-    if (playerName.trim().length < 2) {
-        alert('Vänligen ange ditt namn innan du startar spelet. Minst två tecken.');
-        return;
-    }
-	
-    // playContainer.style.opacity = '0';
+	const playerName = playerInput.value;
+	if (playerName.trim().length < 2) {
+		alert('Vänligen ange ditt namn innan du startar spelet. Minst två tecken.');
+		return;
+	}
+
+	// playContainer.style.opacity = '0';
 
 	fullBody.forEach(element => {
 		element.style.display = "none"
 	})
-    playerNameContainer.innerHTML = `<p id="player-name">Spelare: ${playerName}</p>`;
-    playerNameContainer.style.display = 'flex';
+	playerNameContainer.innerHTML = `<p id="player-name">Spelare: ${playerName}</p>`;
+	playerNameContainer.style.display = 'flex';
 
 	generateWord()
 }
 
 
 const fullBody = [ground, scaffold, head, body, arms, legs]
+
+function revealHangmanPart() {
+	const hangmanParts = [ground, scaffold, head, body, arms, legs];
+
+	const hiddenPart = hangmanParts.find(part => part.style.display === 'none');
+
+	if (hiddenPart) {
+		hiddenPart.style.display = 'block';
+	}
+}
+
+function endGame(isWin) {
+	if (isWin) {
+		console.log('Congratulations! You win!');
+	} else {
+		console.log('Sorry! You lose!');
+	}
+
+}
