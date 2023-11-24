@@ -1,19 +1,21 @@
-// import { words } from './svenska-ord.js'
+import { words } from './svenska-ord.js'
 // const viewContainer = document.querySelector('.view-container')
 // const playContainer = document.querySelector('.play-container')
 // const gamerContainer = document.querySelector('.gamer-container')
-// const hangMan = document.querySelector('.hangman')
+const hangMan = document.querySelector('.hangman')
+const hangManHeader = document.querySelector('.hang-man-header')
+const hideOnPlay = document.querySelector('#hide-on-play')
 // const scaffold = document.querySelector('#scaffold')
 // const head = document.querySelector('#head')
 // const body = document.querySelector('#body')
 // const arms = document.querySelector('#arms')
 // const legs = document.querySelector('#legs')
 // const playerInput = document.querySelector('#player-input')
-// const difficulty = document.querySelector('.difficulty')
+const difficulty = document.querySelector('.difficulty')
 // const normalBtn = document.querySelector('.normal')
 // const theWord = document.querySelector('#the-word')
-// const guesses = document.querySelector('#guesses')
-// const underline = document.querySelector('.underline')
+
+const underline = document.querySelector('.underline')
 
 // const viewContainer = document.querySelector('.view-container')
 // const playContainer = document.querySelector('.play-container')
@@ -31,7 +33,7 @@ const ground = document.querySelector('#ground')
 // const theWord = document.querySelector('#the-word')
 // const guesses = document.querySelector('#guesses')
 // const underline = document.querySelector('.underline')
-// const hidden = document.querySelector('.hidden')
+const hidden = document.querySelector('.hidden')
 
 // normalBtn.addEventListener('click', () => {
 // 	playContainer.classList.add('hidden')
@@ -54,10 +56,11 @@ const minWordLength = words.filter(word => word.length >= 10);
 const theWord = document.querySelector('#the-word');
 const randomIndex = Math.floor(Math.random() * minWordLength.length);
 export const randomWord = minWordLength[randomIndex].toUpperCase();
+const guesses = document.querySelector('#guesses')
 // const guesses = document.querySelector('#guesses')
 
 let incorrectGuesses = 0;
-const maxIncorrectGuesses = 5;
+const maxIncorrectGuesses = 6;
 
 function generateWord() {
 	let hiddenLetters = Array(randomWord.length).fill('_');
@@ -67,6 +70,8 @@ function generateWord() {
 	document.addEventListener('keydown', (event) => {
 		const pressedKey = event.key.toUpperCase();
 
+		guesses.innerText += `${pressedKey}-`;
+
 		if (randomWord.includes(pressedKey)) {
 			randomWord.split('').forEach((char, index) => {
 				if (char === pressedKey) {
@@ -75,7 +80,7 @@ function generateWord() {
 			});
 			theWord.innerText = hiddenLetters.join(' ');
             if (!hiddenLetters.includes('_')) {
-                endGame(true); // Game over with a win
+                endGame(true); 
             }
 		} else {
 			revealHangmanPart();
@@ -107,13 +112,15 @@ function startGame() {
 		return;
 	}
 
-	// playContainer.style.opacity = '0';
+	hideOnPlay.style.opacity = '0';
 
 	fullBody.forEach(element => {
 		element.style.display = "none"
 	})
-	playerNameContainer.innerHTML = `<p id="player-name">Spelare: ${playerName}</p>`;
-	playerNameContainer.style.display = 'flex';
+	hangManHeader.innerHTML = `<h1 class="hang-man-header">Spelare: ${playerName}</h1>`;
+	hangManHeader.style.display = 'block';
+
+
 
 	generateWord()
 }

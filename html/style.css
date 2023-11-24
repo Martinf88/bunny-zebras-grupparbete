@@ -36,6 +36,9 @@ body {
 	/* display: none; */
 }
 
+.hang-man-header {
+	font-size: 2rem;
+}
 .hangman {
 	/* visibility: hidden; */
 	/* visibility: visible; */
@@ -72,24 +75,29 @@ body {
 }
 
 #guesses {
-	/* visibility: hidden; */
+	margin-top: 0;
+	letter-spacing: 0.2em;
+	font-size: 3rem;
+	font-size: 2rem;
 }
 
-<<<<<<< HEAD
+#guesses-header {
+	font-size: 2rem;
+	text-decoration: underline;
+}
+
 .underline {
 	font-size: 3rem;
 	/* text-decoration:underline dashed;
 	text-decoration-color: red; */
-=======
 /* .underline {
 	
 	text-decoration:underline dashed;
 	text-decoration-color: red;
 } */
-
+}
 .game-over-container {
 	border: 2px solid red;
->>>>>>> theword
 }
 
 .gamer-container {
@@ -100,11 +108,10 @@ body {
 	visibility: hidden;
 }
 
-<<<<<<< HEAD
 #player-name {
 	font-size: 3rem;
 	text-shadow: #000 1px 0 0.5rem;
-=======
+}
 
 .high-score-container {
 	text-align: center;
@@ -118,6 +125,6 @@ body {
 	list-style-type: none;
 	padding-left: 0;
 	border: 1px solid black;
->>>>>>> theword
 }
+
 /* <-------------------------------------------------------------------------------------------> */
