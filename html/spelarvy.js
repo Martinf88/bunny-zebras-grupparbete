@@ -59,7 +59,9 @@ function generateWord() {
 		theWord.innerText = hiddenLetters.join(' ');
 	  }
 	else (!randomWord.includes(pressedKey)) 
-	scaffold.style.opacity = '1';
+	// fullBody.forEach(element) 
+	scaffold.style.display = 'block';
+	// head.style.display = 'block';
 	});
 	// console.log('hej');  //tillfäligt bortaget
 }
