@@ -1,15 +1,14 @@
 import { words } from './svenska-ord.js'
-const keyboardDiv =document.querySelector (".keyboard");
-const getWord = document.querySelector ('#get-word');
-const wordDisplay = document.querySelector('.word-display')
+// const getWord = document.querySelector ('#get-word');
+// const wordDisplay = document.querySelector('.word-display')
 
-let svenskaOrd = localStorage.getItem("RandomWords");
-console.log ('Data from svesnka-ord.js: ', svenskaOrd );
+// let svenskaOrd = localStorage.getItem("RandomWords");
+// console.log ('Data from svesnka-ord.js: ', svenskaOrd );
 
-const getRandomWord = () => {
+// const getRandomWord = () => {
 
-    const { word } = wordlist[Math.floor(Math.random() * wordlist.length)];
-    console.log(word);
-    wordDisplay.innerHTML = Array.from("word").map(() => 'li class="letter"><li>').join("");
-}
-getRandomWord();
+//     const { word } = wordlist[Math.floor(Math.random() * wordlist.length)];
+//     console.log(word);
+//     wordDisplay.innerHTML = Array.from("word").map(() => 'li class="letter"><li>').join("");
+// }
+// getRandomWord();
