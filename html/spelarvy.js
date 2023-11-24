@@ -35,10 +35,10 @@ const ground = document.querySelector('#ground')
 // senare skall varje knapptryckning visas i guesses
 // alla ord skall konverteras till lowercase
 
-
+const minWordLength = words.filter(word => word.length >= 10);
 const theWord = document.querySelector('#the-word');
-const randomIndex = Math.floor(Math.random() * words.length);
-const randomWord = words[randomIndex].toUpperCase();
+const randomIndex = Math.floor(Math.random() * minWordLength.length);
+export const randomWord = minWordLength[randomIndex].toUpperCase();
 // const guesses = document.querySelector('#guesses')
 
 function generateWord() {

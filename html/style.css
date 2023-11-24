@@ -81,6 +81,10 @@ body {
 	text-decoration-color: red;
 } */
 
+.game-over-container {
+	border: 2px solid red;
+}
+
 .gamer-container {
 	visibility: visible;
 }
@@ -89,7 +93,18 @@ body {
 	visibility: hidden;
 }
 
-.felord {
 
+.high-score-container {
+	text-align: center;
+}
+
+.high-score-header {
+	border: 1px solid black;
+}
+
+.high-score-list {
+	list-style-type: none;
+	padding-left: 0;
+	border: 1px solid black;
 }
 /* <-------------------------------------------------------------------------------------------> */
