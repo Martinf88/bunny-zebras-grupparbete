@@ -68,17 +68,18 @@ body {
 
 #the-word {
 	/* visibility: hidden; */
+	font-size: 3rem;
 }
 
 #guesses {
 	/* visibility: hidden; */
 }
 
-.underline {
-	font-size: 3rem;
+/* .underline {
+	
 	text-decoration:underline dashed;
 	text-decoration-color: red;
-}
+} */
 
 .gamer-container {
 	visibility: visible;
