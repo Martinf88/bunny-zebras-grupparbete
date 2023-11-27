@@ -34,6 +34,7 @@ const ground = document.querySelector('#ground')
 // const guesses = document.querySelector('#guesses')
 // const underline = document.querySelector('.underline')
 const hidden = document.querySelector('.hidden')
+let gameOver = false;
 
 // normalBtn.addEventListener('click', () => {
 // 	playContainer.classList.add('hidden')
@@ -68,27 +69,37 @@ function generateWord() {
 	theWord.innerText = hiddenLetters.join(' ');
 
 	document.addEventListener('keydown', (event) => {
+
+		if (gameOver) {
+            return;
+        }
+
 		const pressedKey = event.key.toUpperCase();
 
-		guesses.innerText += `${pressedKey}-`;
+		if (/^[A-ZÅÄÖ]$/.test(pressedKey)) {
+			guesses.innerText += `${pressedKey}-`;
 
-		if (randomWord.includes(pressedKey)) {
-			randomWord.split('').forEach((char, index) => {
-				if (char === pressedKey) {
-					hiddenLetters[index] = pressedKey;
+			if (randomWord.includes(pressedKey)) {
+				randomWord.split('').forEach((char, index) => {
+					if (char === pressedKey) {
+						hiddenLetters[index] = pressedKey;
+					}
+				});
+				theWord.innerText = hiddenLetters.join(' ');
+
+				if (!hiddenLetters.includes('_')) {
+					endGame(true);
 				}
-			});
-			theWord.innerText = hiddenLetters.join(' ');
-            if (!hiddenLetters.includes('_')) {
-                endGame(true); 
-            }
-		} else {
-			revealHangmanPart();
-			incorrectGuesses++;
+			} else {
+				revealHangmanPart();
+				incorrectGuesses++;
 
-			if (incorrectGuesses >= maxIncorrectGuesses) {
-				endGame(false);
+				if (incorrectGuesses >= maxIncorrectGuesses) {
+					endGame(false);
+				}
 			}
+		} else {
+			console.log('Invalid input. Only alphabet letters are allowed.');
 		}
 	});
 }
@@ -139,6 +150,8 @@ function revealHangmanPart() {
 }
 
 function endGame(isWin) {
+	gameOver = true;
+
 	if (isWin) {
 		console.log('Congratulations! You win!');
 	} else {
