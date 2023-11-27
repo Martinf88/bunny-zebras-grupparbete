@@ -32,7 +32,6 @@ header {
 	flex-direction: column;
 	background-color: rgb(136, 62, 205);
 	border-radius: 0 0 1rem 1rem;
-
 }
 
 .difficulty {
@@ -54,7 +53,6 @@ header {
 	font-weight: bold;
 	font-size: 1rem;
 	cursor: pointer;
-	margin-bottom: 0.2rem;
 }
 
 .highscore-btn {
@@ -69,6 +67,7 @@ header {
 
 .normal {
 	background-color: rgb(127, 191, 255);
+	cursor: pointer;
 }
 
 .hard {
