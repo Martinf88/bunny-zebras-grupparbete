@@ -21,5 +21,15 @@ t.ex 300p för korrekt gissat ord utan ett minsta fel
 mellan 10 - 14 bokstäver
 
 
+hur lagrar vi poängen till spelet?
+
+Namn på spelaren : #player-input
+felaktiga gissningar: incorrectguesses
+ordets längd: randomWord
+datum och tid: skapa en ny variabel
+
+
+
+
 */
 
