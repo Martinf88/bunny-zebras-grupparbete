@@ -18,7 +18,11 @@
 <body>
 
 	<div class="view-container">
-		<h1 class="hang-man-header">Hänga Gubbe</h1>
+		<header>
+			<h1 class="hang-man-header">Hänga Gubbe</h1>
+			<button class="highscore-btn btn-style">Highscore</button>
+			<button class="gameview-btn btn-style">Spelarvy</button>
+		</header>
 		<div class="play-container page felord">
 			<figure class="hangman">
 				<svg width="301" height="400" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +57,7 @@
 			<p id="guesses"></p>
 		</div>
 
-		<div class="Random-letters">
+		<!-- <div class="Random-letters">
 			<button>a</button><button>b</button><button>c</button>
 			<button>d</button><button>e</button><button>f</button>
 			<button>g</button><button>h</button><button>i</button>
@@ -64,16 +68,16 @@
 			<button>v</button><button>w</button><button>x</button>
 			<button>y</button><button>z</button><button>å</button>
 			<button>ä</button><button>ö</button>
-		</div>
+		</div> -->
 
 
 		<div class="game-over-container page">
-			<h2>GAME OVER!</h2>
+			<h2 class="win-lose"></h2>
 			<p class="win-message">Grattis, du gissade rätt.</p>
 			<p class="loss-message">Tyvärr, du gissade fel.</p>
-			<button>Försök igen!</button>
+			<button class="try-again">Försök igen!</button>
 			<p class="word-reveal">Ordet var: Kräftskiva</p>
-			<p>Du gissade: x-antal-ggr</p>
+			<p class="guess-amount"></p>
 		</div>
 		<div class="high-score-container page">
 			<h2 class="high-score-header">HIGH SCORE!</h>

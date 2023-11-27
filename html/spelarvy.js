@@ -20,6 +20,7 @@ const underline = document.querySelector('.underline')
 // const viewContainer = document.querySelector('.view-container')
 // const playContainer = document.querySelector('.play-container')
 // const gamerContainer = document.querySelector('.gamer-container')
+const highScoreContainer = document.querySelector('.high-score-container')
 // const hangMan = document.querySelector('.hangman')
 const scaffold = document.querySelector('#scaffold')
 const head = document.querySelector('#head')
@@ -34,7 +35,13 @@ const ground = document.querySelector('#ground')
 // const guesses = document.querySelector('#guesses')
 // const underline = document.querySelector('.underline')
 const hidden = document.querySelector('.hidden')
+const gameOverPage = document.querySelector('.game-over-container')
+const guessAmount = document.querySelector('.guess-amount')
+const winLose = document.querySelector('.win-lose')
+const highScoreBtn = document.querySelector('.highscore-btn')
+const gameViewBtn = document.querySelector('.gameview-btn')
 let gameOver = false;
+
 
 // normalBtn.addEventListener('click', () => {
 // 	playContainer.classList.add('hidden')
@@ -62,6 +69,7 @@ const guesses = document.querySelector('#guesses')
 
 let incorrectGuesses = 0;
 const maxIncorrectGuesses = 6;
+let keyDownCount = 0
 
 function generateWord() {
 	let hiddenLetters = Array(randomWord.length).fill('_');
@@ -73,13 +81,18 @@ function generateWord() {
 		if (gameOver) {
             return;
         }
-
+		
 		const pressedKey = event.key.toUpperCase();
 
-		if (/^[A-ZÅÄÖ]$/.test(pressedKey)) {
+		if	(/^[A-ZÅÄÖ]$/.test(pressedKey)) {
 			guesses.innerText += `${pressedKey}-`;
+			keyDownCount ++
+			guessAmount.innerHTML = `<p class="guess-amount">Du gissade ${keyDownCount} gånger.</p>`; // - visar antalet gissningar
+			
+			
 
 			if (randomWord.includes(pressedKey)) {
+			
 				randomWord.split('').forEach((char, index) => {
 					if (char === pressedKey) {
 						hiddenLetters[index] = pressedKey;
@@ -130,8 +143,7 @@ function startGame() {
 	})
 	hangManHeader.innerHTML = `<h1 class="hang-man-header">Spelare: ${playerName}</h1>`;
 	hangManHeader.style.display = 'block';
-
-
+	
 
 	generateWord()
 }
@@ -154,8 +166,19 @@ function endGame(isWin) {
 
 	if (isWin) {
 		console.log('Congratulations! You win!');
+		winLose.innerHTML = `<h2 class="win-lose">Grattis! Du vann!</h2>`;
+		gameOverPage.style.display = 'flex';
+		playContainer.style.display = 'none';
+		gamerContainer.style.display = 'none';
+
+
 	} else {
 		console.log('Sorry! You lose!');
+		winLose.innerHTML = `<h2 class="win-lose">Tyvärr! Du förlorade!</h2>`;
+		gameOverPage.style.display = 'flex';
+		playContainer.style.display = 'none';
+		gamerContainer.style.display = 'none';
 	}
 
 }
+
