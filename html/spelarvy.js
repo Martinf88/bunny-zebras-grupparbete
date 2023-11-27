@@ -40,6 +40,7 @@ const guessAmount = document.querySelector('.guess-amount')
 const winLose = document.querySelector('.win-lose')
 const highScoreBtn = document.querySelector('.highscore-btn')
 const gameViewBtn = document.querySelector('.gameview-btn')
+const errorMessage = document.querySelector('#error-message');
 let gameOver = false;
 
 
@@ -132,7 +133,7 @@ function startGame() {
 
 	const playerName = playerInput.value;
 	if (playerName.trim().length < 2) {
-		alert('Vänligen ange ditt namn innan du startar spelet. Minst två tecken.');
+		errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
 		return;
 	}
 
