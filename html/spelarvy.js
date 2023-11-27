@@ -58,9 +58,9 @@ function generateWord() {
 		});
 		theWord.innerText = hiddenLetters.join(' ');
 	  }
-	else (!randomWord.includes(pressedKey)) 
+	// else (!randomWord.includes(pressedKey)) 
 	// fullBody.forEach(element) 
-	scaffold.style.display = 'block';
+	// scaffold.style.display = 'block';
 	// head.style.display = 'block';
 	});
 	// console.log('hej');  //tillfäligt bortaget
