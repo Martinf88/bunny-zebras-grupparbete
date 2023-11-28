@@ -176,3 +176,26 @@ function endGame(isWin) {
 
 }
 
+//Togglar High Score och spelarvy
+highScoreContainer.style.display = 'none'
+
+
+highScoreBtn.addEventListener('click', () => {
+	if (highScoreContainer.style.display === 'none') {
+        highScoreContainer.style.display = 'flex';
+		playContainer.style.display = 'none';
+    } else {
+        highScoreContainer.style.display = 'none';
+		playContainer.style.display = 'flex';
+    }
+})
+
+gameViewBtn.addEventListener('click', () => {
+	if (playContainer.style.display === 'none') {
+        playContainer.style.display = 'flex';
+		highScoreContainer.style.display = 'none';
+    } else {
+        playContainer.style.display = 'none';
+		highScoreContainer.style.display = 'flex';
+    }
+})
