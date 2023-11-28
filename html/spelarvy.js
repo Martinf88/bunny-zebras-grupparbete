@@ -147,6 +147,7 @@ function startGame() {
 	hangManHeader.innerHTML = `<h1 class="hang-man-header">Spelare: ${playerName}</h1>`;
 	hangManHeader.style.display = 'block';
 
+	//sparar spelarens namn i high-score-list. Webbläsaren kommer inte ihåg, det skall fixas.
 	const li = document.createElement('li')
 	li.append(playerName)
 	highScoreList.append(li)
