@@ -130,7 +130,7 @@ function startGame() {
 		return;
 	}
 
-	hideOnPlay.style.opacity = '0';
+	hideOnPlay.style.display = 'none';
 
 	fullBody.forEach(element => {
 		element.style.display = "none"
