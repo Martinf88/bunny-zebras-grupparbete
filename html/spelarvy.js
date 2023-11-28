@@ -44,7 +44,7 @@ const errorMessage = document.querySelector('#error-message');
 let gameOver = false;
 
 
-const minWordLength = words.filter(word => word.length >= 10);
+const minWordLength = words.filter(word => word.length >= 10 && word.length <= 14);
 const theWord = document.querySelector('#the-word');
 const randomIndex = Math.floor(Math.random() * minWordLength.length);
 export const randomWord = minWordLength[randomIndex].toUpperCase();
