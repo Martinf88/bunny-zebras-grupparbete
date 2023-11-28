@@ -106,6 +106,9 @@ const normalBtn = document.querySelector('.normal')
 const playerInput = document.querySelector('#player-input')
 const gamerContainer = document.querySelector('.gamer-container')
 
+//döljer välj svårighetsgrad meddelande
+difficulty.style.display = 'none'
+
 normalBtn.addEventListener('click', startGame);
 
 // spelet startar med Enter. Behöver ändras vid flera svårighetsgrader
