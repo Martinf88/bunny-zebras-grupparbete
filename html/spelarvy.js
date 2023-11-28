@@ -114,7 +114,7 @@ normalBtn.addEventListener('click', startGame);
 // spelet startar med Enter. Behöver ändras vid flera svårighetsgrader
 playerInput.addEventListener('keypress', (event) =>{ 
 	if (event.key === "Enter")
-	startGame()
+	difficulty.style.display ='block'
 });
 
 const playerNameContainer = document.createElement('div');
