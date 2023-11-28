@@ -54,6 +54,7 @@ const guesses = document.querySelector('#guesses')
 let incorrectGuesses = 0;
 const maxIncorrectGuesses = 6;
 let keyDownCount = 0
+let pressedKeyList = []
 
 function generateWord() {
 	let hiddenLetters = Array(randomWord.length).fill('_');
@@ -68,11 +69,17 @@ function generateWord() {
 		
 		const pressedKey = event.key.toUpperCase();
 
+		//Stänger av knappar man redan gissat på
+		pressedKeyList.push(event.key)
+		console.log(`Lista: ${pressedKeyList}`);
+		if (pressedKeyList.includes(event.key)){
+			event.preventDefault()
+		}
+
 		if	(/^[A-ZÅÄÖ]$/.test(pressedKey)) {
 			guesses.innerText += `${pressedKey}-`;
 			keyDownCount ++
 			guessAmount.innerHTML = `<p class="guess-amount">Du gissade ${keyDownCount} gånger.</p>`; // - visar antalet gissningar
-			
 			
 
 			if (randomWord.includes(pressedKey)) {
