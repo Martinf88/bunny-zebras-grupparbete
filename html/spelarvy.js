@@ -44,12 +44,14 @@ const errorMessage = document.querySelector('#error-message');
 let gameOver = false;
 
 
-const minWordLength = words.filter(word => word.length >= 10 && word.length <= 14);
 const theWord = document.querySelector('#the-word');
-const randomIndex = Math.floor(Math.random() * minWordLength.length);
-export const randomWord = minWordLength[randomIndex].toUpperCase();
 const guesses = document.querySelector('#guesses')
-// const guesses = document.querySelector('#guesses')
+const minWordLength = words.filter(word => word.length >= 10 && word.length <= 14);
+const minWordLengthEasy = words.filter(word => word.length >= 15 && word.length <= 19);
+const randomIndex = Math.floor(Math.random() * minWordLength.length);
+const randomIndexEasy = Math.floor(Math.random() * minWordLengthEasy.length);
+export const randomWord = minWordLength[randomIndex].toUpperCase();
+export const randomWordEasy = minWordLengthEasy[randomIndexEasy].toUpperCase();
 
 let incorrectGuesses = 0;
 const maxIncorrectGuesses = 6;
@@ -109,15 +111,80 @@ function generateWord() {
 	});
 }
 
+function generateWordEasy() {
+	let hiddenLetters = Array(randomWordEasy.length).fill('_');
+
+	theWord.innerText = hiddenLetters.join(' ');
+
+	document.addEventListener('keydown', (event) => {
+
+		if (gameOver) {
+            return;
+        }
+		
+		const pressedKey = event.key.toUpperCase();
+
+		//Stänger av knappar man redan gissat på OBS INTE KLAR!!!!!!!!!!!!!!!!!!
+		// console.log(`Lista: ${pressedKeyList}`);
+		// if (pressedKeyList.includes(event.key)){
+		// 	event.preventDefault()
+		// 	return
+		// }
+		// pressedKeyList.push(pressedKey)
+		
+		if	(/^[A-ZÅÄÖ]$/.test(pressedKey)) {
+			guesses.innerText += `${pressedKey}-`;
+			keyDownCount ++
+			guessAmount.innerHTML = `<p class="guess-amount">Du gissade ${keyDownCount} gånger.</p>`; // - visar antalet gissningar
+			
+
+			if (randomWordEasy.includes(pressedKey)) {
+			
+				randomWordEasy.split('').forEach((char, index) => {
+					if (char === pressedKey) {
+						hiddenLetters[index] = pressedKey;
+					}
+				});
+				theWord.innerText = hiddenLetters.join(' ');
+
+				if (!hiddenLetters.includes('_')) {
+					endGame(true);
+				}
+			} else {
+				revealHangmanPart();
+				incorrectGuesses++;
+
+				if (incorrectGuesses >= maxIncorrectGuesses) {
+					endGame(false);
+				}
+			}
+		} else {
+			console.log('Invalid input. Only alphabet letters are allowed.');
+		}
+	});
+}
+
 const playContainer = document.querySelector('.play-container')
 const normalBtn = document.querySelector('.normal')
+const easyBtn = document.querySelector('.easy')
 const playerInput = document.querySelector('#player-input')
 const gamerContainer = document.querySelector('.gamer-container')
 
 //döljer välj svårighetsgrad meddelande
 difficulty.style.display = 'none'
 
-normalBtn.addEventListener('click', startGame);
+// normalBtn.addEventListener('click', startGame && generateWord);
+normalBtn.addEventListener('click', () => {
+    startGame();
+    generateWord();
+});
+easyBtn.addEventListener('click', () => {
+    startGame();
+    generateWordEasy();
+});
+// easyBtn.addEventListener('click', startGame && generateWordEasy);
+// generateWord()
+// generateWordEasy()
 
 // spelet startar med Enter. Behöver ändras vid flera svårighetsgrader
 playerInput.addEventListener('keypress', (event) =>{ 
@@ -153,7 +220,8 @@ function startGame() {
 	highScoreList.append(li)
 	
 
-	generateWord()
+	// generateWord()
+	// generateWordEasy()
 }
 
 //Listas med alla figurens delar
