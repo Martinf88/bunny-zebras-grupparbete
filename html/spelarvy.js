@@ -44,23 +44,6 @@ const errorMessage = document.querySelector('#error-message');
 let gameOver = false;
 
 
-// normalBtn.addEventListener('click', () => {
-// 	playContainer.classList.add('hidden')
-
-// 	theWord.style.visibility('hidden')
-// 	theWord.classlist.add('hidden');
-// })
-
-
-// theWord = value av math.random(words)
-// keyDown eller keyPress  för att dölja en bokstav i taget
-// flippa koden och dölj ordet för att avslöja en bokstav i taget
-// ordets längd skall vara minst tio tecken långt och vara kopplat till normal-knappen
-
-//senare skall figuren avslöjas bit för bit för varje korrekt gissning
-// senare skall varje knapptryckning visas i guesses
-// alla ord skall konverteras till lowercase
-
 const minWordLength = words.filter(word => word.length >= 10);
 const theWord = document.querySelector('#the-word');
 const randomIndex = Math.floor(Math.random() * minWordLength.length);
@@ -124,10 +107,13 @@ const playerInput = document.querySelector('#player-input')
 const gamerContainer = document.querySelector('.gamer-container')
 
 normalBtn.addEventListener('click', startGame);
-playerInput.addEventListener('keypress', (event) =>{
+
+// spelet startar med Enter. Behöver ändras vid flera svårighetsgrader
+playerInput.addEventListener('keypress', (event) =>{ 
 	if (event.key === "Enter")
 	startGame()
 });
+
 const playerNameContainer = document.createElement('div');
 playerNameContainer.className = 'page';
 playerNameContainer.style.display = 'none';
@@ -153,7 +139,7 @@ function startGame() {
 	generateWord()
 }
 
-
+//Listas med alla figurens delar
 const fullBody = [ground, scaffold, head, body, arms, legs]
 
 function revealHangmanPart() {
