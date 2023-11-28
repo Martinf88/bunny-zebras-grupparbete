@@ -124,6 +124,10 @@ const playerInput = document.querySelector('#player-input')
 const gamerContainer = document.querySelector('.gamer-container')
 
 normalBtn.addEventListener('click', startGame);
+playerInput.addEventListener('keypress', (event) =>{
+	if (event.key === "Enter")
+	startGame()
+});
 const playerNameContainer = document.createElement('div');
 playerNameContainer.className = 'page';
 playerNameContainer.style.display = 'none';
