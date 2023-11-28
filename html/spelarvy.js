@@ -58,7 +58,7 @@ const maxIncorrectGuesses = 6;
 let keyDownCount = 0
 let pressedKeyList = []
 
-function generateWord() {
+function generateWord(randomWord) {
 	let hiddenLetters = Array(randomWord.length).fill('_');
 
 	theWord.innerText = hiddenLetters.join(' ');
@@ -110,7 +110,7 @@ function generateWord() {
 		}
 	});
 }
-
+/*
 function generateWordEasy() {
 	let hiddenLetters = Array(randomWordEasy.length).fill('_');
 
@@ -163,7 +163,7 @@ function generateWordEasy() {
 		}
 	});
 }
-
+*/
 const playContainer = document.querySelector('.play-container')
 const normalBtn = document.querySelector('.normal')
 const easyBtn = document.querySelector('.easy')
@@ -173,23 +173,22 @@ const gamerContainer = document.querySelector('.gamer-container')
 //döljer välj svårighetsgrad meddelande
 difficulty.style.display = 'none'
 
-// normalBtn.addEventListener('click', startGame && generateWord);
+//startar spelet på normal eller lätt
 normalBtn.addEventListener('click', () => {
     startGame();
-    generateWord();
+    generateWord(randomWord);
 });
 easyBtn.addEventListener('click', () => {
     startGame();
-    generateWordEasy();
+    generateWord(randomWordEasy);
 });
-// easyBtn.addEventListener('click', startGame && generateWordEasy);
-// generateWord()
-// generateWordEasy()
+
+
 
 // spelet startar med Enter. Behöver ändras vid flera svårighetsgrader
 playerInput.addEventListener('keypress', (event) =>{ 
 	if (event.key === "Enter")
-	difficulty.style.display ='block'
+		difficulty.style.display ='block'
 });
 
 const playerNameContainer = document.createElement('div');
