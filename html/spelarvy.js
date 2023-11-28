@@ -129,22 +129,27 @@ const playerNameContainer = document.createElement('div');
 playerNameContainer.className = 'page';
 playerNameContainer.style.display = 'none';
 gamerContainer.insertAdjacentElement('afterend', playerNameContainer);
+const highScoreList = document.querySelector('.high-score-list')
 
 function startGame() {
-
+	
 	const playerName = playerInput.value;
 	if (playerName.trim().length < 2) {
 		errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
 		return;
 	}
-
+	
 	hideOnPlay.style.display = 'none';
-
+	
 	fullBody.forEach(element => {
 		element.style.display = "none"
 	})
 	hangManHeader.innerHTML = `<h1 class="hang-man-header">Spelare: ${playerName}</h1>`;
 	hangManHeader.style.display = 'block';
+
+	const li = document.createElement('li')
+	li.append(playerName)
+	highScoreList.append(li)
 	
 
 	generateWord()
