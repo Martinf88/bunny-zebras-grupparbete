@@ -5,9 +5,10 @@
 }
 
 body {
-	font-family: Arial, sans-serif;
-	background-color: rgb(235, 227, 239);
-}
+		font-family: Arial, sans-serif;
+		background: linear-gradient( rgb(136, 62, 205), rgb(255, 255, 255));
+		min-height: 100vh;
+	}
 
 header {
 	padding: 1.5rem;
@@ -53,6 +54,10 @@ header {
 	color: red;
 }
 
+.normalEasyHard  {
+	display: flex;
+} 
+
 .btn-style {
 	padding: 0.4rem;
 	background-color: #252424;
@@ -73,6 +78,7 @@ header {
 
 .easy {
 	background-color: rgb(130, 236, 201);
+	cursor: pointer;
 }
 
 .normal {
@@ -82,6 +88,7 @@ header {
 
 .hard {
 	background-color: rgb(255, 148, 127);
+	cursor: pointer;
 }
 
 .play-container {
@@ -97,30 +104,31 @@ header {
 	/* visibility: visible; */
 }
 
-#scaffold {
-	/* visibility: hidden; */
-	/* visibility: visible; */
-}
+@keyframes dangle {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
 
-#head {
- 	/* visibility: hidden; */
-	/* visibility: visible; */
-}
-
-#body {
-	/* visibility: hidden; */
-	/* visibility: visible; */
-}
-
-#arms {
-	/* visibility: hidden; */
-	/* visibility: visible; */
-}
-
-#legs {
-	/* visibility: hidden; */
-	/* visibility: visible; */
-}
+  #legs {
+    animation: dangle 2.5s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  #arms {
+    animation: dangle 2.5s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  #body {
+    animation: dangle 2.5s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  #head {
+    animation: dangle 2.5s ease-in-out infinite;
+    transform-origin: top center;
+  }
 
 #the-word {
 	/* visibility: hidden; */
@@ -150,11 +158,23 @@ header {
 } */
 }
 .game-over-container {
-	border: 2px solid red;
-	background-color: green;
+	/* border: 2px solid red; */
+	/* background-color: #292626; */
+	color: rgb(218, 32, 32);
+	letter-spacing: 0.1em;
+	text-decoration: underline;
+	text-shadow:1px 1px 1px #000,
+	2px 2px 2px #000; 
+	font-size: 2rem;
+	padding: 3rem;
 	display: none;
-}
+} 
 
+
+.try-again {
+	color: rgb(218, 32, 32);
+	text-decoration: solid;
+}
 
 .gamer-container {
 	visibility: visible;
@@ -171,6 +191,9 @@ header {
 
 .high-score-container {
 	text-align: center;
+	display: none;
+	flex-direction: column;
+	align-items: center;
 }
 
 .high-score-header {

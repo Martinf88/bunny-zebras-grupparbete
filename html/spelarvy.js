@@ -1,4 +1,5 @@
 import { words } from './svenska-ord.js'
+import { wordReveal } from './game-over.js'
 // const viewContainer = document.querySelector('.view-container')
 // const playContainer = document.querySelector('.play-container')
 // const gamerContainer = document.querySelector('.gamer-container')
@@ -46,10 +47,13 @@ let gameOver = false;
 
 export const theWord = document.querySelector('#the-word');
 const guesses = document.querySelector('#guesses')
+const minWordLengthHard = words.filter(word => word.length >= 6 && word.length <= 9);
 const minWordLength = words.filter(word => word.length >= 10 && word.length <= 14);
 const minWordLengthEasy = words.filter(word => word.length >= 15 && word.length <= 19);
+const randomIndexHard = Math.floor(Math.random() * minWordLengthHard.length);
 const randomIndex = Math.floor(Math.random() * minWordLength.length);
 const randomIndexEasy = Math.floor(Math.random() * minWordLengthEasy.length);
+export const randomWordHard = minWordLengthHard[randomIndexHard].toUpperCase();
 export const randomWord = minWordLength[randomIndex].toUpperCase();
 export const randomWordEasy = minWordLengthEasy[randomIndexEasy].toUpperCase();
 
@@ -62,6 +66,7 @@ function generateWord(randomWord) {
 	let hiddenLetters = Array(randomWord.length).fill('_');
 
 	theWord.innerText = hiddenLetters.join(' ');
+	wordReveal.innerText = 'Ordet var: ' + randomWord;
 
 	document.addEventListener('keydown', (event) => {
 
@@ -165,6 +170,7 @@ function generateWordEasy() {
 }
 */
 export const playContainer = document.querySelector('.play-container')
+const hardBtn = document.querySelector('.hard')
 const normalBtn = document.querySelector('.normal')
 const easyBtn = document.querySelector('.easy')
 const playerInput = document.querySelector('#player-input')
@@ -184,6 +190,17 @@ playerInput.addEventListener('input', function() {
 });
 
 // Lägg till en händelselyssnare på knapparna för att kontrollera om det finns ett felmeddelande innan spelet startar
+hardBtn.addEventListener('click', function() {
+    if (playerInput.value.trim().length < 2) {
+        errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
+        errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
+    } else {
+        errorMessage.innerText = '';
+        errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
+        startGame();
+        generateWord(randomWordHard);
+    }
+});
 normalBtn.addEventListener('click', function() {
     if (playerInput.value.trim().length < 2) {
         errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
