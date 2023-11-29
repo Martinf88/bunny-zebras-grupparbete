@@ -14,11 +14,7 @@ highScoreBtn.addEventListener('click', () => {
         highScoreContainer.style.display = 'flex';
 		playContainer.style.display = 'none';
 		theWord.style.display = 'none'
-    } else {
-        highScoreContainer.style.display = 'none';
-		playContainer.style.display = 'flex';
-		theWord.style.display = 'flex'
-    }
+    } 
 })
 
 gameViewBtn.addEventListener('click', () => {
@@ -26,9 +22,5 @@ gameViewBtn.addEventListener('click', () => {
         playContainer.style.display = 'flex';
 		highScoreContainer.style.display = 'none';
 		theWord.style.display = 'flex'
-    } else {
-        playContainer.style.display = 'none';
-		highScoreContainer.style.display = 'flex';
-		theWord.style.display = 'none'
-    }
+    } 
 })

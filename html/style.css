@@ -168,13 +168,20 @@ header {
 }
 
 .high-score-header {
-	border: 1px solid black;
+	color: goldenrod;
+	letter-spacing: 0.1em;
+	text-decoration: double underline;
+	text-shadow:1px 1px 1px #000,
+	2px 2px 2px #000; 
+	font-size: 4rem;
+	padding: 4rem;
 }
 
 .high-score-list {
 	list-style-type: none;
-	padding-left: 0;
-	border: 1px solid black;
+	padding: 5em;
+	font-size: 1.1rem;
+	border: 15px solid goldenrod;
 }
 
 /* <-------------------------------------------------------------------------------------------> */
