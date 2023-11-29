@@ -1,35 +1,34 @@
-/* 
-Användaren ska kunna växla mellan spelvy och poängvy. Poängvyn visar resultatet från tidigare omgångar: spelarens namn, antalet felaktiga gissningar, ordets längd, datum+tid för omgången, och om man vann eller förlorade. Använd localStorage för att spara datan i webbläsaren.
-
-Listan ska vara sorterad så att de bästa omgångarna visas överst: i första hand stigande på antal gissningar, i andra hand fallande på datum och tid för omgången. Man ska kunna växla till att visa omgångarna sorterade i fallande ordning på datum och tid.
-
-
-En high-scorelista för normal svårgihetsgrad och en för lätt
+import { theWord } from './spelarvy.js'
+import { highScoreContainer } from './spelarvy.js'
+import { playContainer } from './spelarvy.js'
+import { highScoreBtn } from './spelarvy.js'
+import { gameViewBtn } from './spelarvy.js'
 
 
-Poängsystem 
-
-lätt svårighetsgrad
-300p för korrekt gissat ord utan ett minsta fel
--50p om du gissar fel bokstav
-mellan 6 - 9 bokstäver
+//Togglar High Score och spelarvy
+highScoreContainer.style.display = 'none'
 
 
-Normal svårighetsgrad
-t.ex 300p för korrekt gissat ord utan ett minsta fel
--50 för varje felgissning
-mellan 10 - 14 bokstäver
+highScoreBtn.addEventListener('click', () => {
+	if (highScoreContainer.style.display === 'none') {
+        highScoreContainer.style.display = 'flex';
+		playContainer.style.display = 'none';
+		theWord.style.display = 'none'
+    } else {
+        highScoreContainer.style.display = 'none';
+		playContainer.style.display = 'flex';
+		theWord.style.display = 'flex'
+    }
+})
 
-
-hur lagrar vi poängen till spelet?
-
-Namn på spelaren : #player-input
-felaktiga gissningar: incorrectguesses
-ordets längd: randomWord
-datum och tid: skapa en ny variabel
-
-
-
-
-*/
-
+gameViewBtn.addEventListener('click', () => {
+	if (playContainer.style.display === 'none') {
+        playContainer.style.display = 'flex';
+		highScoreContainer.style.display = 'none';
+		theWord.style.display = 'flex'
+    } else {
+        playContainer.style.display = 'none';
+		highScoreContainer.style.display = 'flex';
+		theWord.style.display = 'none'
+    }
+})

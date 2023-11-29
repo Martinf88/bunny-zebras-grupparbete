@@ -1,10 +1,34 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
 body {
 	font-family: Arial, sans-serif;
-	background-color: rgb(219, 216, 216);
+	background-color: rgb(235, 227, 239);
+}
+
+header {
+	padding: 1.5rem;
+	background-color: rgb(136, 62, 205);
+	text-align: center;
+}
+
+.nav-bar{
+	display: flex;
+}
+
+.highscore-btn, .gameview-btn {
+	flex-grow: 1;
 }
 
 .hang-man-header {
-	text-align: center;
+	font-size: 2rem;
+	text-shadow: 
+		1px 1px 1px rgb(191, 149, 231),
+		2px 2px 2px rgb(191, 149, 231);
+
 }
 
 .page {
@@ -20,12 +44,34 @@ body {
 	font-weight: bold;
 }
 
+.difficulty {
+	color: black;
+	font-weight: bold;
+}
+
+#error-message {
+	color: red;
+}
+
+
+
+
+.btn-style {
+	padding: 0.4rem;
+	background-color: #252424;
+	color: rgb(243, 226, 246);
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
 .easy {
 	background-color: rgb(130, 236, 201);
 }
 
 .normal {
 	background-color: rgb(127, 191, 255);
+	cursor: pointer;
 }
 
 .hard {
@@ -36,10 +82,11 @@ body {
 	/* display: none; */
 }
 
-.hang-man-header {
-	font-size: 2rem;
-}
 .hangman {
+	background-color: #e3dbe2;
+	border-radius: 0 0 1em 1em;
+	border: 1em solid rgb(44, 43, 43);
+	border-top: none;
 	/* visibility: hidden; */
 	/* visibility: visible; */
 }
@@ -98,14 +145,17 @@ body {
 }
 .game-over-container {
 	border: 2px solid red;
+	background-color: green;
+	display: none;
 }
+
 
 .gamer-container {
 	visibility: visible;
 }
 
 .hidden {
-	visibility: hidden;
+	display: none;
 }
 
 #player-name {
