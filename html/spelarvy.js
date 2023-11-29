@@ -20,7 +20,7 @@ const underline = document.querySelector('.underline')
 // const viewContainer = document.querySelector('.view-container')
 // const playContainer = document.querySelector('.play-container')
 // const gamerContainer = document.querySelector('.gamer-container')
-const highScoreContainer = document.querySelector('.high-score-container')
+export const highScoreContainer = document.querySelector('.high-score-container')
 // const hangMan = document.querySelector('.hangman')
 const scaffold = document.querySelector('#scaffold')
 const head = document.querySelector('#head')
@@ -38,13 +38,13 @@ const hidden = document.querySelector('.hidden')
 const gameOverPage = document.querySelector('.game-over-container')
 const guessAmount = document.querySelector('.guess-amount')
 const winLose = document.querySelector('.win-lose')
-const highScoreBtn = document.querySelector('.highscore-btn')
-const gameViewBtn = document.querySelector('.gameview-btn')
+export const highScoreBtn = document.querySelector('.highscore-btn')
+export const gameViewBtn = document.querySelector('.gameview-btn')
 const errorMessage = document.querySelector('#error-message');
 let gameOver = false;
 
 
-const theWord = document.querySelector('#the-word');
+export const theWord = document.querySelector('#the-word');
 const guesses = document.querySelector('#guesses')
 const minWordLength = words.filter(word => word.length >= 10 && word.length <= 14);
 const minWordLengthEasy = words.filter(word => word.length >= 15 && word.length <= 19);
@@ -164,7 +164,7 @@ function generateWordEasy() {
 	});
 }
 */
-const playContainer = document.querySelector('.play-container')
+export const playContainer = document.querySelector('.play-container')
 const normalBtn = document.querySelector('.normal')
 const easyBtn = document.querySelector('.easy')
 const playerInput = document.querySelector('#player-input')
@@ -257,30 +257,4 @@ function endGame(isWin) {
 
 }
 
-//Togglar High Score och spelarvy
-highScoreContainer.style.display = 'none'
 
-
-highScoreBtn.addEventListener('click', () => {
-	if (highScoreContainer.style.display === 'none') {
-        highScoreContainer.style.display = 'flex';
-		playContainer.style.display = 'none';
-		theWord.style.display = 'none'
-    } else {
-        highScoreContainer.style.display = 'none';
-		playContainer.style.display = 'flex';
-		theWord.style.display = 'flex'
-    }
-})
-
-gameViewBtn.addEventListener('click', () => {
-	if (playContainer.style.display === 'none') {
-        playContainer.style.display = 'flex';
-		highScoreContainer.style.display = 'none';
-		theWord.style.display = 'flex'
-    } else {
-        playContainer.style.display = 'none';
-		highScoreContainer.style.display = 'flex';
-		theWord.style.display = 'none'
-    }
-})
