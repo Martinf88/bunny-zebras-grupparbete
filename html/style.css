@@ -171,6 +171,9 @@ header {
 
 .high-score-container {
 	text-align: center;
+    height:100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .high-score-header {

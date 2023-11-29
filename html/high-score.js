@@ -24,3 +24,5 @@ gameViewBtn.addEventListener('click', () => {
 		theWord.style.display = 'flex'
     } 
 })
+
+
