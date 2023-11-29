@@ -53,9 +53,6 @@ header {
 	color: red;
 }
 
-
-
-
 .btn-style {
 	padding: 0.4rem;
 	background-color: #252424;
@@ -63,6 +60,15 @@ header {
 	font-weight: bold;
 	font-size: 1rem;
 	cursor: pointer;
+}
+
+.try-again {
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	background-color: #252424;
+	padding: 1rem;
+	border-radius: 0.7rem;
 }
 
 .easy {
