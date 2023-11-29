@@ -171,24 +171,41 @@ const playerInput = document.querySelector('#player-input')
 const gamerContainer = document.querySelector('.gamer-container')
 
 //döljer välj svårighetsgrad meddelande
-difficulty.style.display = 'none'
+// difficulty.style.display = 'none'
 
-//startar spelet på normal eller lätt
-normalBtn.addEventListener('click', () => {
-    startGame();
-    generateWord(randomWord);
+playerInput.addEventListener('input', function() {
+    if (playerInput.value.trim().length < 2) {
+        errorMessage.innertext = 'Skriv in ditt namn. Minst två bokstäver.';
+        errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort
+    } else {
+        errorMessage.innerText = '';
+        errorMessage.style.display = 'none'; // Dölj felmeddelandet om texten är tillräckligt lång
+    }
 });
-easyBtn.addEventListener('click', () => {
-    startGame();
-    generateWord(randomWordEasy);
+
+// Lägg till en händelselyssnare på knapparna för att kontrollera om det finns ett felmeddelande innan spelet startar
+normalBtn.addEventListener('click', function() {
+    if (playerInput.value.trim().length < 2) {
+        errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
+        errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
+    } else {
+        errorMessage.innerText = '';
+        errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
+        startGame();
+        generateWord(randomWord);
+    }
 });
 
-
-
-// spelet startar med Enter. Behöver ändras vid flera svårighetsgrader
-playerInput.addEventListener('keypress', (event) =>{ 
-	if (event.key === "Enter")
-		difficulty.style.display ='block'
+easyBtn.addEventListener('click', function() {
+    if (playerInput.value.trim().length < 2) {
+        errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
+        errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
+    } else {
+        errorMessage.textContent = '';
+        errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
+        startGame();
+        generateWord(randomWordEasy);
+    }
 });
 
 const playerNameContainer = document.createElement('div');
