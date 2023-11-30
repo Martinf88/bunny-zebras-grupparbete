@@ -76,13 +76,12 @@ function generateWord(randomWord) {
 		
 		const pressedKey = event.key.toUpperCase();
 
-		//Stänger av knappar man redan gissat på OBS INTE KLAR!!!!!!!!!!!!!!!!!!
-		// console.log(`Lista: ${pressedKeyList}`);
-		// if (pressedKeyList.includes(event.key)){
-		// 	event.preventDefault()
-		// 	return
-		// }
-		// pressedKeyList.push(pressedKey)
+		console.log(`Lista: ${pressedKeyList}`);
+		if (pressedKeyList.includes(pressedKey)){
+			
+			return
+		}
+		pressedKeyList.push(pressedKey)
 		
 		if	(/^[A-ZÅÄÖ]$/.test(pressedKey)) {
 			guesses.innerText += `${pressedKey}-`;
