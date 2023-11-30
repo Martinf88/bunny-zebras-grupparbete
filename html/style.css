@@ -67,14 +67,6 @@ header {
 	cursor: pointer;
 }
 
-.try-again {
-	text-decoration: none;
-	font-weight: bold;
-	color: white;
-	background-color: #252424;
-	padding: 1rem;
-	border-radius: 0.7rem;
-}
 
 .easy {
 	background-color: rgb(130, 236, 201);
@@ -105,30 +97,30 @@ header {
 }
 
 @keyframes dangle {
-    0%, 100% {
-      transform: rotate(0deg);
+	0%, 100% {
+		transform: rotate(0deg);
     }
     50% {
-      transform: rotate(4deg);
+		transform: rotate(4deg);
     }
-  }
+}
 
-  #legs {
-    animation: dangle 2.5s ease-in-out infinite;
+#legs {
+	animation: dangle 2.5s ease-in-out infinite;
     transform-origin: top center;
-  }
-  #arms {
-    animation: dangle 2.5s ease-in-out infinite;
+}
+#arms {
+	animation: dangle 2.5s ease-in-out infinite;
     transform-origin: top center;
-  }
-  #body {
-    animation: dangle 2.5s ease-in-out infinite;
+}
+#body {
+	animation: dangle 2.5s ease-in-out infinite;
     transform-origin: top center;
-  }
-  #head {
-    animation: dangle 2.5s ease-in-out infinite;
+}
+#head {
+	animation: dangle 2.5s ease-in-out infinite;
     transform-origin: top center;
-  }
+}
 
 #the-word {
 	/* visibility: hidden; */
@@ -151,18 +143,15 @@ header {
 	font-size: 3rem;
 	/* text-decoration:underline dashed;
 	text-decoration-color: red; */
-/* .underline {
-	
-	text-decoration:underline dashed;
-	text-decoration-color: red;
-} */
+	/* .underline {
+		
+		text-decoration:underline dashed;
+		text-decoration-color: red;
+	} */
 }
 .game-over-container {
-	/* border: 2px solid red; */
-	/* background-color: #292626; */
 	color: rgb(218, 32, 32);
 	letter-spacing: 0.1em;
-	text-decoration: underline;
 	text-shadow:1px 1px 1px #000,
 	2px 2px 2px #000; 
 	font-size: 2rem;
@@ -170,11 +159,20 @@ header {
 	display: none;
 } 
 
-
 .try-again {
-	color: rgb(218, 32, 32);
-	text-decoration: solid;
+	margin: 2em 2em;
+	font-weight: bold;
+	color: white;
+	background-color: #252424;
+	padding: 1rem;
+	border-radius: 0.7rem;
 }
+
+.word-reveal, .guess-amount{
+	text-decoration: underline;
+	margin-top: 1rem;
+}
+
 
 .gamer-container {
 	visibility: visible;
