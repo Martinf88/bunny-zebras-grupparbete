@@ -1,5 +1,5 @@
 import { words } from './svenska-ord.js'
-import { wordReveal } from './game-over.js'
+// import { wordReveal } from './game-over.js'
 // const viewContainer = document.querySelector('.view-container')
 // const playContainer = document.querySelector('.play-container')
 // const gamerContainer = document.querySelector('.gamer-container')
@@ -16,7 +16,7 @@ const forsokIgen = document.querySelector('.forsok-igen')
 const difficulty = document.querySelector('.difficulty')
 // const normalBtn = document.querySelector('.normal')
 // const theWord = document.querySelector('#the-word')
-
+const wordReveal = document.querySelector('.word-reveal')
 const underline = document.querySelector('.underline')
 
 // const viewContainer = document.querySelector('.view-container')
@@ -48,74 +48,84 @@ let gameOver = false;
 
 export const theWord = document.querySelector('#the-word');
 const guesses = document.querySelector('#guesses')
-const minWordLengthHard = words.filter(word => word.length >= 6 && word.length <= 9);
-const minWordLength = words.filter(word => word.length >= 10 && word.length <= 14);
-const minWordLengthEasy = words.filter(word => word.length >= 15 && word.length <= 19);
-const randomIndexHard = Math.floor(Math.random() * minWordLengthHard.length);
-const randomIndex = Math.floor(Math.random() * minWordLength.length);
-const randomIndexEasy = Math.floor(Math.random() * minWordLengthEasy.length);
-export const randomWordHard = minWordLengthHard[randomIndexHard].toUpperCase();
-export const randomWord = minWordLength[randomIndex].toUpperCase();
-export const randomWordEasy = minWordLengthEasy[randomIndexEasy].toUpperCase();
+
+let minWordLengthHard = words.filter(word => word.length >= 6 && word.length <= 9);
+let minWordLengthNormal = words.filter(word => word.length >= 10 && word.length <= 14);
+let minWordLengthEasy = words.filter(word => word.length >= 15 && word.length <= 19);
+
+// let randomIndexHard = Math.floor(Math.random() * minWordLengthHard.length);
+let randomIndexNormal = Math.floor(Math.random() * minWordLengthNormal.length);
+let randomIndexEasy = Math.floor(Math.random() * minWordLengthEasy.length);
+
+// export let randomWordHard = minWordLengthHard[randomIndexHard].toUpperCase();
+export let randomWord = ''
+export let randomWordNormal = minWordLengthNormal[randomIndexNormal].toUpperCase();
+export let randomWordEasy = minWordLengthEasy[randomIndexEasy].toUpperCase();
 
 let incorrectGuesses = 0;
 const maxIncorrectGuesses = 6;
 let keyDownCount = 0
 let pressedKeyList = []
 
+let hiddenLetters = []
+
 function generateWord(randomWord) {
-	let hiddenLetters = Array(randomWord.length).fill('_');
+	// hiddenLetters = Array(randomWord.length).fill('_');
 
-	theWord.innerText = hiddenLetters.join(' ');
-	wordReveal.innerText = 'Ordet var: ' + randomWord;
+	// theWord.innerText = hiddenLetters.join(' ');
+	// wordReveal.innerText = 'Ordet var: ' + randomWord;
 
-	document.addEventListener('keydown', (event) => {
+	
+}
+document.addEventListener('keydown', (event) => {
 
-		if (gameOver) {
-            return;
-        }
-		
-		const pressedKey = event.key.toUpperCase();
-
-		console.log(`Lista: ${pressedKeyList}`);
-		if (pressedKeyList.includes(pressedKey)){
-			
-			return
-		}
-		pressedKeyList.push(pressedKey)
-		
-		if	(/^[A-ZÅÄÖ]$/.test(pressedKey)) {
-			guesses.innerText += `${pressedKey}-`;
-			keyDownCount ++
-			guessAmount.innerHTML = `<p class="guess-amount">Du gissade ${keyDownCount} gånger.</p>`; // - visar antalet gissningar
-			
-
-			if (randomWord.includes(pressedKey)) {
-			
-				randomWord.split('').forEach((char, index) => {
-					if (char === pressedKey) {
-						hiddenLetters[index] = pressedKey;
-					}
-				});
-				theWord.innerText = hiddenLetters.join(' ');
-
-				if (!hiddenLetters.includes('_')) {
-					endGame(true);
-				}
-			} else {
-				revealHangmanPart();
-				incorrectGuesses++;
-
-				if (incorrectGuesses >= maxIncorrectGuesses) {
-					endGame(false);
-				}
-			}
-		} else {
-			console.log('Invalid input. Only alphabet letters are allowed.');
-		}
-	});
+	if (gameOver) {
+		return;
+	}
+	
+if (!event.key){
+	return 
 }
 
+	const pressedKey = event.key.toUpperCase();
+
+	console.log(`Lista: ${pressedKeyList}`);
+	if (pressedKeyList.includes(pressedKey)){
+		
+		return
+	}
+	pressedKeyList.push(pressedKey)
+	
+	if	(/^[A-ZÅÄÖ]$/.test(pressedKey)) {
+		guesses.innerText += `${pressedKey}-`;
+		keyDownCount ++
+		guessAmount.innerHTML = `<p class="guess-amount">Du gissade ${keyDownCount} gånger.</p>`; // - visar antalet gissningar
+		
+		let randomWordUppercase = randomWord.toUpperCase()
+		if (randomWordUppercase.includes(pressedKey)) {
+		
+			randomWordUppercase.split('').forEach((char, index) => {
+				if (char === pressedKey) {
+					hiddenLetters[index] = pressedKey;
+				}
+			});
+			theWord.innerText = hiddenLetters.join(' ');
+
+			if (!hiddenLetters.includes('_')) {
+				endGame(true);
+			}
+		} else {
+			revealHangmanPart();
+			incorrectGuesses++;
+
+			if (incorrectGuesses >= maxIncorrectGuesses) {
+				endGame(false);
+			}
+		}
+	} else {
+		console.log('Invalid input. Only alphabet letters are allowed.');
+	}
+});
 export const playContainer = document.querySelector('.play-container')
 const hardBtn = document.querySelector('.hard')
 const normalBtn = document.querySelector('.normal')
@@ -136,8 +146,11 @@ playerInput.addEventListener('input', function() {
     }
 });
 
+let mode = ''
+
 // Lägg till en händelselyssnare på knapparna för att kontrollera om det finns ett felmeddelande innan spelet startar
 hardBtn.addEventListener('click', function() {
+	mode = 'hard'
     if (playerInput.value.trim().length < 2) {
         errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
         errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
@@ -145,10 +158,11 @@ hardBtn.addEventListener('click', function() {
         errorMessage.innerText = '';
         errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
         startGame();
-        generateWord(randomWordHard);
+        generateWord();
     }
 });
 normalBtn.addEventListener('click', function() {
+	mode = 'normal'
     if (playerInput.value.trim().length < 2) {
         errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
         errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
@@ -156,11 +170,12 @@ normalBtn.addEventListener('click', function() {
         errorMessage.innerText = '';
         errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
         startGame();
-        generateWord(randomWord);
+        generateWord();
     }
 });
 
 easyBtn.addEventListener('click', function() {
+	mode = 'easy'
     if (playerInput.value.trim().length < 2) {
         errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
         errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
@@ -168,7 +183,7 @@ easyBtn.addEventListener('click', function() {
         errorMessage.textContent = '';
         errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
         startGame();
-        generateWord(randomWordEasy);
+        generateWord();
     }
 });
 
@@ -180,6 +195,28 @@ const highScoreList = document.querySelector('.high-score-list')
 
 function startGame() {
 	
+	if( mode === 'easy' ) {
+		randomWord = minWordLengthEasy[Math.floor(Math.random() * minWordLengthEasy.length)];
+//slumpa ett index
+		console.log('easy', randomWord);
+	}
+	else if( mode === 'normal' ) {
+		randomWord = minWordLengthNormal[Math.floor(Math.random() * minWordLengthNormal.length)];
+//slumpa ett index
+		console.log('normal', randomWord);
+	}
+	else {
+		randomWord = minWordLengthHard[Math.floor(Math.random() * minWordLengthHard.length)];
+//slumpa ett index
+		console.log('hard', randomWord);
+	}
+
+	hiddenLetters = Array(randomWord.length).fill('_');
+
+	theWord.innerText = hiddenLetters.join(' ');
+	wordReveal.innerText = 'Ordet var: ' + randomWord;
+
+
 	const playerName = playerInput.value;
 	if (playerName.trim().length < 2) {
 		errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
@@ -194,15 +231,20 @@ function startGame() {
 	hangManHeader.innerHTML = `<h1 class="hang-man-header">Spelare: ${playerName}</h1>`;
 	hangManHeader.style.display = 'block';
 
-	//sparar spelarens namn i high-score-list. Webbläsaren kommer inte ihåg, det skall fixas.
-	const li = document.createElement('li')
-	li.append(playerName)
-	highScoreList.append(li)
+	// //sparar spelarens namn i high-score-list. Webbläsaren kommer inte ihåg, det skall fixas.
+	// const li = document.createElement('li')
+	// li.append(playerName)
+	// highScoreList.append(li)
 	
 
-	// generateWord()
-	// generateWordEasy()
+
+	
 }
+
+
+// let randomIndexHard = Math.floor(Math.random() * minWordLengthHard.length);
+// let randomIndexNormal = Math.floor(Math.random() * minWordLengthNormal.length);
+// let randomIndexEasy = Math.floor(Math.random() * minWordLengthEasy.length);
 
 //Listas med alla figurens delar
 
@@ -243,7 +285,36 @@ let view = 'start-view'
 let wrongGuessesCount = 0
 
 // Anropa denna i stället for window.location.reload()
-function restart() {
-    view = 'start-view'
-    wrongGuessesCount = 0
+    forsokIgen.addEventListener('click', () => { 
+		gameOver = false; 
+	playContainer.style.display = 'flex';
+	gamerContainer.style.display = 'flex';
+	hideOnPlay.style.display = 'flex';
+	gameOverPage.style.display = 'none';
+	resetGame();
+	
+})
+
+function resetGame() {
+    // Clear the previous word and reset necessary variables
+    theWord.innerText = '';
+    guesses.innerText = '';
+    keyDownCount = 0;
+    pressedKeyList = [];
+    incorrectGuesses = 0;
+
+    // Choose a new random word based on the selected difficulty
+    if (difficulty === 'hard') {
+        generateWord(randomWordHard);
+    } else if (difficulty === 'normal') {
+        generateWord(randomWordNormal);
+    } else if (difficulty === 'easy') {
+        generateWord(randomWordEasy);
+    }
 }
+
+// console.log('randomWord', randomWord);
+
+// console.log('randomWordNormal', randomWordNormal);
+
+// console.log('randomWordEasy', randomWordEasy);
