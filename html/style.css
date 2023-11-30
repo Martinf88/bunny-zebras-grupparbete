@@ -1,10 +1,35 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
 body {
-	font-family: Arial, sans-serif;
-	background-color: rgb(219, 216, 216);
+		font-family: Arial, sans-serif;
+		background: linear-gradient( rgb(136, 62, 205), rgb(255, 255, 255));
+		min-height: 100vh;
+	}
+
+header {
+	padding: 1.5rem;
+	background-color: rgb(136, 62, 205);
+	text-align: center;
+}
+
+.nav-bar{
+	display: flex;
+}
+
+.highscore-btn, .gameview-btn {
+	flex-grow: 1;
 }
 
 .hang-man-header {
-	text-align: center;
+	font-size: 2rem;
+	text-shadow: 
+		1px 1px 1px rgb(191, 149, 231),
+		2px 2px 2px rgb(191, 149, 231);
+
 }
 
 .page {
@@ -20,16 +45,42 @@ body {
 	font-weight: bold;
 }
 
+.difficulty {
+	color: black;
+	font-weight: bold;
+}
+
+#error-message {
+	color: red;
+}
+
+.normalEasyHard  {
+	display: flex;
+} 
+
+.btn-style {
+	padding: 0.4rem;
+	background-color: #252424;
+	color: rgb(243, 226, 246);
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+
 .easy {
 	background-color: rgb(130, 236, 201);
+	cursor: pointer;
 }
 
 .normal {
 	background-color: rgb(127, 191, 255);
+	cursor: pointer;
 }
 
 .hard {
 	background-color: rgb(255, 148, 127);
+	cursor: pointer;
 }
 
 .play-container {
@@ -37,33 +88,38 @@ body {
 }
 
 .hangman {
+	background-color: #e3dbe2;
+	border-radius: 0 0 1em 1em;
+	border: 1em solid rgb(44, 43, 43);
+	border-top: none;
 	/* visibility: hidden; */
 	/* visibility: visible; */
 }
 
-#scaffold {
-	/* visibility: hidden; */
-	/* visibility: visible; */
-}
-
-#head {
- 	/* visibility: hidden; */
-	/* visibility: visible; */
-}
-
-#body {
-	/* visibility: hidden; */
-	/* visibility: visible; */
-}
-
-#arms {
-	/* visibility: hidden; */
-	/* visibility: visible; */
+@keyframes dangle {
+	0%, 100% {
+		transform: rotate(0deg);
+    }
+    50% {
+		transform: rotate(4deg);
+    }
 }
 
 #legs {
-	/* visibility: hidden; */
-	/* visibility: visible; */
+	animation: dangle 2.5s ease-in-out infinite;
+    transform-origin: top center;
+}
+#arms {
+	animation: dangle 2.5s ease-in-out infinite;
+    transform-origin: top center;
+}
+#body {
+	animation: dangle 2.5s ease-in-out infinite;
+    transform-origin: top center;
+}
+#head {
+	animation: dangle 2.5s ease-in-out infinite;
+    transform-origin: top center;
 }
 
 #the-word {
@@ -72,39 +128,87 @@ body {
 }
 
 #guesses {
-	/* visibility: hidden; */
+	margin-top: 0;
+	letter-spacing: 0.2em;
+	font-size: 3rem;
+	font-size: 2rem;
 }
 
-/* .underline {
-	
-	text-decoration:underline dashed;
-	text-decoration-color: red;
-} */
+#guesses-header {
+	font-size: 2rem;
+	text-decoration: underline;
+}
 
+.underline {
+	font-size: 3rem;
+	/* text-decoration:underline dashed;
+	text-decoration-color: red; */
+	/* .underline {
+		
+		text-decoration:underline dashed;
+		text-decoration-color: red;
+	} */
+}
 .game-over-container {
-	border: 2px solid red;
+	color: rgb(218, 32, 32);
+	letter-spacing: 0.1em;
+	text-shadow:1px 1px 1px #000,
+	2px 2px 2px #000; 
+	font-size: 2rem;
+	padding: 3rem;
+	display: none;
+} 
+
+.try-again {
+	margin: 2em 2em;
+	font-weight: bold;
+	color: white;
+	background-color: #252424;
+	padding: 1rem;
+	border-radius: 0.7rem;
 }
+
+.word-reveal, .guess-amount{
+	text-decoration: underline;
+	margin-top: 1rem;
+}
+
 
 .gamer-container {
 	visibility: visible;
 }
 
 .hidden {
-	visibility: hidden;
+	display: none;
 }
 
+#player-name {
+	font-size: 3rem;
+	text-shadow: #000 1px 0 0.5rem;
+}
 
 .high-score-container {
 	text-align: center;
+	display: none;
+	flex-direction: column;
+	align-items: center;
 }
 
 .high-score-header {
-	border: 1px solid black;
+	color: goldenrod;
+	letter-spacing: 0.1em;
+	text-decoration: double underline;
+	text-shadow:1px 1px 1px #000,
+	2px 2px 2px #000; 
+	font-size: 4rem;
+	padding: 4rem;
 }
 
 .high-score-list {
 	list-style-type: none;
-	padding-left: 0;
-	border: 1px solid black;
+	padding: 5em;
+	font-size: 1.1rem;
+	border: 15px solid goldenrod;
 }
+
 /* <-------------------------------------------------------------------------------------------> */
