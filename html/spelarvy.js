@@ -6,6 +6,7 @@ import { wordReveal } from './game-over.js'
 const hangMan = document.querySelector('.hangman')
 const hangManHeader = document.querySelector('.hang-man-header')
 const hideOnPlay = document.querySelector('#hide-on-play')
+const forsokIgen = document.querySelector('.forsok-igen')
 // const scaffold = document.querySelector('#scaffold')
 // const head = document.querySelector('#head')
 // const body = document.querySelector('#body')
@@ -114,60 +115,7 @@ function generateWord(randomWord) {
 		}
 	});
 }
-/*
-function generateWordEasy() {
-	let hiddenLetters = Array(randomWordEasy.length).fill('_');
 
-	theWord.innerText = hiddenLetters.join(' ');
-
-	document.addEventListener('keydown', (event) => {
-
-		if (gameOver) {
-            return;
-        }
-		
-		const pressedKey = event.key.toUpperCase();
-
-		//Stänger av knappar man redan gissat på OBS INTE KLAR!!!!!!!!!!!!!!!!!!
-		// console.log(`Lista: ${pressedKeyList}`);
-		// if (pressedKeyList.includes(event.key)){
-		// 	event.preventDefault()
-		// 	return
-		// }
-		// pressedKeyList.push(pressedKey)
-		
-		if	(/^[A-ZÅÄÖ]$/.test(pressedKey)) {
-			guesses.innerText += `${pressedKey}-`;
-			keyDownCount ++
-			guessAmount.innerHTML = `<p class="guess-amount">Du gissade ${keyDownCount} gånger.</p>`; // - visar antalet gissningar
-			
-
-			if (randomWordEasy.includes(pressedKey)) {
-			
-				randomWordEasy.split('').forEach((char, index) => {
-					if (char === pressedKey) {
-						hiddenLetters[index] = pressedKey;
-					}
-				});
-				theWord.innerText = hiddenLetters.join(' ');
-
-				if (!hiddenLetters.includes('_')) {
-					endGame(true);
-				}
-			} else {
-				revealHangmanPart();
-				incorrectGuesses++;
-
-				if (incorrectGuesses >= maxIncorrectGuesses) {
-					endGame(false);
-				}
-			}
-		} else {
-			console.log('Invalid input. Only alphabet letters are allowed.');
-		}
-	});
-}
-*/
 export const playContainer = document.querySelector('.play-container')
 const hardBtn = document.querySelector('.hard')
 const normalBtn = document.querySelector('.normal')
@@ -257,6 +205,7 @@ function startGame() {
 }
 
 //Listas med alla figurens delar
+
 const fullBody = [ground, scaffold, head, body, arms, legs]
 
 function revealHangmanPart() {
@@ -290,4 +239,11 @@ function endGame(isWin) {
 
 }
 
+let view = 'start-view'
+let wrongGuessesCount = 0
 
+// Anropa denna i stället for window.location.reload()
+function restart() {
+    view = 'start-view'
+    wrongGuessesCount = 0
+}
