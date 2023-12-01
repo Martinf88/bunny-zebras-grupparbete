@@ -229,6 +229,7 @@ function savePlayerData() {
     playerItem.appendChild(timeNode);
 
 	highScoreList.appendChild(playerItem);
+	localStorage.setItem(playerNameNode, guessesNode, timeNode );
 }
 
 //Lista med figurens delar
