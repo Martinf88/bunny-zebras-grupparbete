@@ -8,7 +8,8 @@ import {playerInput} from './spelarvy.js'
 import {guesses} from './spelarvy.js'
 import {incorrectGuesses} from './spelarvy.js'
 import {startGame} from './spelarvy.js'
-
+import { gamerContainer } from './spelarvy.js'
+import {gameOverPage} from './spelarvy.js'
 
 
 //Togglar High Score och spelarvy
@@ -19,8 +20,8 @@ highScoreBtn.addEventListener('click', () => {
 	if (highScoreContainer.style.display === 'none') {
         highScoreContainer.style.display = 'flex';
 		playContainer.style.display = 'none';
-		theWord.style.display = 'none'
-		guesses.style.display = 'none'
+		gamerContainer.style.display = 'none';
+        gameOverPage.style.display = 'none';
     } 
 })
 
@@ -30,6 +31,8 @@ gameViewBtn.addEventListener('click', () => {
 		highScoreContainer.style.display = 'none';
 		theWord.style.display = 'flex'
 		guesses.style.display = 'flex'
+        gameOverPage.style.display = 'none';
+        gamerContainer.style.display = 'flex';
     } 
 })
 

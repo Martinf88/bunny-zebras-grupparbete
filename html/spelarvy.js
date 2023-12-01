@@ -12,7 +12,7 @@ const arms = document.querySelector('#arms')
 const legs = document.querySelector('#legs')
 const ground = document.querySelector('#ground')
 const hidden = document.querySelector('.hidden')
-const gameOverPage = document.querySelector('.game-over-container')
+export const gameOverPage = document.querySelector('.game-over-container')
 const guessAmount = document.querySelector('.guess-amount')
 const winLose = document.querySelector('.win-lose')
 export const highScoreBtn = document.querySelector('.highscore-btn')
@@ -22,6 +22,8 @@ let gameOver = false;
 export const theWord = document.querySelector('#the-word');
 export const guesses = document.querySelector('#guesses')
 let highScoreList = document.querySelector('.high-score-list')
+const scoreBtn = document.querySelector('.score-btn')
+const dateBtn = document.querySelector('.date-btn')
 
 let minWordLengthHard = words.filter(word => word.length >= 6 && word.length <= 9);
 let minWordLengthNormal = words.filter(word => word.length >= 10 && word.length <= 14);
@@ -100,7 +102,7 @@ const hardBtn = document.querySelector('.hard')
 const normalBtn = document.querySelector('.normal')
 const easyBtn = document.querySelector('.easy')
 export const playerInput = document.querySelector('#player-input')
-const gamerContainer = document.querySelector('.gamer-container')
+export const gamerContainer = document.querySelector('.gamer-container')
 
 
 //döljer välj svårighetsgrad meddelande
@@ -229,6 +231,7 @@ function savePlayerList(playerList) {
 
 // Spara en ny spelares data till localStorage
 function savePlayerData() {
+	
     const playerData = `${playerName} | Gissningar: ${keyDownCount} | Datum: ${gameStartTime}`;
     highScoreList.innerHTML += `<li>${playerData}</li>`;
 
@@ -244,6 +247,11 @@ window.onload = function() {
         highScoreList.innerHTML += `<li>${player}</li>`;
     });
 };
+
+scoreBtn.addEventListener('click', () => {
+	
+	highScoreList.sort((a, b) => a.keyDownCount - b.keyDownCount); 
+})
 
 //Lista med figurens delar
 const fullBody = [ground, scaffold, head, body, arms, legs]
@@ -290,6 +298,7 @@ forsokIgen.addEventListener('click', () => {
 	gamerContainer.style.display = 'flex';
 	hideOnPlay.style.display = 'flex';
 	gameOverPage.style.display = 'none';
+	highScoreContainer.style.display = 'none';
 	resetGame();
 
 })
