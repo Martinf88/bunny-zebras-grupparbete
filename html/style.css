@@ -222,10 +222,4 @@ header {
 	border: 15px solid goldenrod;
 	background-color: bisque;
 }
-
-li > * {
-	display: flex;
-	gap: 1em;
-}
-
 /* <-------------------------------------------------------------------------------------------> */
