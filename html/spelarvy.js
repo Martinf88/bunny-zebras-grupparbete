@@ -47,7 +47,7 @@ let gameOver = false;
 
 
 export const theWord = document.querySelector('#the-word');
-const guesses = document.querySelector('#guesses')
+export const guesses = document.querySelector('#guesses')
 
 let minWordLengthHard = words.filter(word => word.length >= 6 && word.length <= 9);
 let minWordLengthNormal = words.filter(word => word.length >= 10 && word.length <= 14);
@@ -62,9 +62,9 @@ export let randomWord = ''
 export let randomWordNormal = minWordLengthNormal[randomIndexNormal].toUpperCase();
 export let randomWordEasy = minWordLengthEasy[randomIndexEasy].toUpperCase();
 
-let incorrectGuesses = 0;
+export let incorrectGuesses = 0;
 const maxIncorrectGuesses = 6;
- export let keyDownCount = 0
+ export let keyDownCount = 0;
 let pressedKeyList = []
 
 let hiddenLetters = []
@@ -130,7 +130,7 @@ export const playContainer = document.querySelector('.play-container')
 const hardBtn = document.querySelector('.hard')
 const normalBtn = document.querySelector('.normal')
 const easyBtn = document.querySelector('.easy')
-const playerInput = document.querySelector('#player-input')
+export const playerInput = document.querySelector('#player-input')
 const gamerContainer = document.querySelector('.gamer-container')
 
 //döljer välj svårighetsgrad meddelande
@@ -193,7 +193,14 @@ playerNameContainer.style.display = 'none';
 gamerContainer.insertAdjacentElement('afterend', playerNameContainer);
 const highScoreList = document.querySelector('.high-score-list')
 
-function startGame() {
+let gameStartTime = '';
+let playerName = '';
+
+export function startGame() {
+	
+	let currentDate = new Date();
+    gameStartTime = currentDate.toLocaleString();
+	console.log(gameStartTime);
 	
 	if( mode === 'easy' ) {
 		randomWord = minWordLengthEasy[Math.floor(Math.random() * minWordLengthEasy.length)];
@@ -217,7 +224,7 @@ function startGame() {
 	wordReveal.innerText = 'Ordet var: ' + randomWord;
 
 
-	const playerName = playerInput.value;
+	playerName = playerInput.value;
 	if (playerName.trim().length < 2) {
 		errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
 		return;
@@ -235,10 +242,19 @@ function startGame() {
 	// const li = document.createElement('li')
 	// li.append(playerName)
 	// highScoreList.append(li)
+}
+
+function savePlayerData(){
+
+	const playerData = {
+		player: playerName,
+		gissningar: keyDownCount,
+		tid: gameStartTime,
+	}
+
 	
 
-
-	
+	console.log("Player Data:", playerData);
 }
 
 
@@ -279,6 +295,7 @@ function endGame(isWin) {
 		gamerContainer.style.display = 'none';
 	}
 
+	savePlayerData();
 }
 
 let view = 'start-view'

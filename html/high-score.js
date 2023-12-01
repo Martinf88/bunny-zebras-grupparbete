@@ -4,6 +4,10 @@ import { playContainer } from './spelarvy.js'
 import { highScoreBtn } from './spelarvy.js'
 import { gameViewBtn } from './spelarvy.js'
 import {keyDownCount} from './spelarvy.js'
+import {playerInput} from './spelarvy.js'
+import {guesses} from './spelarvy.js'
+import {incorrectGuesses} from './spelarvy.js'
+import {startGame} from './spelarvy.js'
 
 
 
@@ -54,63 +58,7 @@ const highScoreHeader = document.querySelector('.high-score-header')
 
 let keydownSpan = document.createElement('span');
 keydownSpan.innerText = keyDownCount;
-console.log( "visa Keydown" + keydownSpan);
+console.log( "visa Keydown" + keydownSpan); */
 
 
-    function renderDateAndTime(highscore){
-        highScoreList.innerText ='';
-        const items = highScoreList.map( score => {
-            const li = document.createElement('li');
-            const nameSpan = document.createElement ('span');
-            const dateSpan = document.createElement ('span');
-            const timeSpan = document.createElement ('span');
-
-    
-         const dateTime = new Date(score.timestamp * 1000);
-        nameSpan.innerText = date.name;
-        dateSpan.innerText = `Date: ${dateTime.toLocaleDateString()}`;
-        timeSpan.innerText = `Time: ${dateTime.toLocaleTimeString()}`;
-        
-       
-
-        li.append(nameSpan);
-        li.append(dateSpan);
-        li.append(timeSpan);
-
-        return li;
-        });
-
-    items.forEach(item => {
-        highScoreList.appendChild(item);
-    });
-        }
-
-//chat gpt
-        function updateLocalTime(){
-            let time = document.getElementById("current-time");
-            let d = new Date();
-            time.innerHTML = d.toLocaleTimeString();
-        }
-        updateLocalTime();
-        setInterval(updateLocalTime, 1000);
-        updateLocalTime();
-        */
-
-        let keydownSpan = document.createElement('span');
-        keydownSpan.innerText = keyDownCount;
-        console.log( "visa Keydown" + keydownSpan);
-
-    function updateDateTime() {
-        var currentDate = new Date();
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
-        var formattedDate = currentDate.toLocaleDateString('en-US', options);
-
-        document.getElementById('date-time').innerText = formattedDate;
-    }
-
-    // Update date and time every second
-    setInterval(updateDateTime, 1000);
-
-    // Initial call to display date and time
-    updateDateTime();
-
+console.log(`gissningar: ${keyDownCount}`);
