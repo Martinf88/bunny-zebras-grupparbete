@@ -1,41 +1,16 @@
 import { words } from './svenska-ord.js'
-// import { wordReveal } from './game-over.js'
-// const viewContainer = document.querySelector('.view-container')
-// const playContainer = document.querySelector('.play-container')
-// const gamerContainer = document.querySelector('.gamer-container')
-const hangMan = document.querySelector('.hangman')
 const hangManHeader = document.querySelector('.hang-man-header')
 const hideOnPlay = document.querySelector('#hide-on-play')
 const forsokIgen = document.querySelector('.forsok-igen')
-// const scaffold = document.querySelector('#scaffold')
-// const head = document.querySelector('#head')
-// const body = document.querySelector('#body')
-// const arms = document.querySelector('#arms')
-// const legs = document.querySelector('#legs')
-// const playerInput = document.querySelector('#player-input')
 const difficulty = document.querySelector('.difficulty')
-// const normalBtn = document.querySelector('.normal')
-// const theWord = document.querySelector('#the-word')
 const wordReveal = document.querySelector('.word-reveal')
-const underline = document.querySelector('.underline')
-
-// const viewContainer = document.querySelector('.view-container')
-// const playContainer = document.querySelector('.play-container')
-// const gamerContainer = document.querySelector('.gamer-container')
 export const highScoreContainer = document.querySelector('.high-score-container')
-// const hangMan = document.querySelector('.hangman')
 const scaffold = document.querySelector('#scaffold')
 const head = document.querySelector('#head')
 const body = document.querySelector('#body')
 const arms = document.querySelector('#arms')
 const legs = document.querySelector('#legs')
 const ground = document.querySelector('#ground')
-// const playerInput = document.querySelector('#player-input')
-// const difficulty = document.querySelector('.difficulty')
-// const normalBtn = document.querySelector('.normal')
-// const theWord = document.querySelector('#the-word')
-// const guesses = document.querySelector('#guesses')
-// const underline = document.querySelector('.underline')
 const hidden = document.querySelector('.hidden')
 const gameOverPage = document.querySelector('.game-over-container')
 const guessAmount = document.querySelector('.guess-amount')
@@ -44,8 +19,6 @@ export const highScoreBtn = document.querySelector('.highscore-btn')
 export const gameViewBtn = document.querySelector('.gameview-btn')
 const errorMessage = document.querySelector('#error-message');
 let gameOver = false;
-
-
 export const theWord = document.querySelector('#the-word');
 export const guesses = document.querySelector('#guesses')
 
@@ -53,11 +26,9 @@ let minWordLengthHard = words.filter(word => word.length >= 6 && word.length <= 
 let minWordLengthNormal = words.filter(word => word.length >= 10 && word.length <= 14);
 let minWordLengthEasy = words.filter(word => word.length >= 15 && word.length <= 19);
 
-// let randomIndexHard = Math.floor(Math.random() * minWordLengthHard.length);
 let randomIndexNormal = Math.floor(Math.random() * minWordLengthNormal.length);
 let randomIndexEasy = Math.floor(Math.random() * minWordLengthEasy.length);
 
-// export let randomWordHard = minWordLengthHard[randomIndexHard].toUpperCase();
 export let randomWord = ''
 export let randomWordNormal = minWordLengthNormal[randomIndexNormal].toUpperCase();
 export let randomWordEasy = minWordLengthEasy[randomIndexEasy].toUpperCase();
@@ -66,20 +37,11 @@ export let incorrectGuesses = 0;
 const maxIncorrectGuesses = 6;
 export let keyDownCount = 0;
 let pressedKeyList = []
-
 let hiddenLetters = []
-
 let gameStarted = false
 
+//Nödvändiga variabler ^
 
-function generateWord(randomWord) {
-	// hiddenLetters = Array(randomWord.length).fill('_');
-
-	// theWord.innerText = hiddenLetters.join(' ');
-	// wordReveal.innerText = 'Ordet var: ' + randomWord;
-
-
-}
 document.addEventListener('keydown', (event) => {
 	if (!gameStarted) {
 		return;
@@ -165,7 +127,6 @@ hardBtn.addEventListener('click', function () {
 		errorMessage.innerText = '';
 		errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
 		startGame();
-		generateWord();
 	}
 });
 normalBtn.addEventListener('click', function () {
@@ -177,7 +138,6 @@ normalBtn.addEventListener('click', function () {
 		errorMessage.innerText = '';
 		errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
 		startGame();
-		generateWord();
 	}
 });
 
@@ -190,7 +150,6 @@ easyBtn.addEventListener('click', function () {
 		errorMessage.textContent = '';
 		errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
 		startGame();
-		generateWord();
 	}
 });
 
@@ -248,7 +207,7 @@ export function startGame() {
 	hangManHeader.innerHTML = `<h1 class="hang-man-header">Spelare: ${playerName}</h1>`;
 	hangManHeader.style.display = 'block';
 
-	// //sparar spelarens namn i high-score-list. Webbläsaren kommer inte ihåg, det skall fixas.
+	//sparar spelarens namn i high-score-list. Webbläsaren kommer inte ihåg, det skall fixas.
 	// const li = document.createElement('li')
 	// li.append(playerName)
 	// highScoreList.append(li)
@@ -267,13 +226,7 @@ function savePlayerData() {
 	console.log("Player Data:", playerData);
 }
 
-
-// let randomIndexHard = Math.floor(Math.random() * minWordLengthHard.length);
-// let randomIndexNormal = Math.floor(Math.random() * minWordLengthNormal.length);
-// let randomIndexEasy = Math.floor(Math.random() * minWordLengthEasy.length);
-
-//Listas med alla figurens delar
-
+//Lista med figurens delar
 const fullBody = [ground, scaffold, head, body, arms, legs]
 
 function revealHangmanPart() {
