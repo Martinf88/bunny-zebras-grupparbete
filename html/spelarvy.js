@@ -15,6 +15,7 @@ const difficulty = document.querySelector('.difficulty')
 // const normalBtn = document.querySelector('.normal')
 // const theWord = document.querySelector('#the-word')
 
+
 const underline = document.querySelector('.underline')
 
 // const viewContainer = document.querySelector('.view-container')
@@ -55,7 +56,7 @@ export const randomWordEasy = minWordLengthEasy[randomIndexEasy].toUpperCase();
 
 let incorrectGuesses = 0;
 const maxIncorrectGuesses = 6;
-let keyDownCount = 0
+ export let keyDownCount = 0
 let pressedKeyList = []
 
 function generateWord(randomWord) {
