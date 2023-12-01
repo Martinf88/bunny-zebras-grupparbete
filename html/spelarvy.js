@@ -290,9 +290,19 @@ function endGame(isWin) {
 
 let view = 'start-view'
 let wrongGuessesCount = 0
-
+const forsokIgenIgen = document.querySelector('.forsok-igen-igen')
 // Anropa denna i stället for window.location.reload()
 forsokIgen.addEventListener('click', () => {
+	gameOver = false;
+	playContainer.style.display = 'flex';
+	gamerContainer.style.display = 'flex';
+	hideOnPlay.style.display = 'flex';
+	gameOverPage.style.display = 'none';
+	highScoreContainer.style.display = 'none';
+	resetGame();
+
+})
+forsokIgenIgen.addEventListener('click', () => {
 	gameOver = false;
 	playContainer.style.display = 'flex';
 	gamerContainer.style.display = 'flex';
