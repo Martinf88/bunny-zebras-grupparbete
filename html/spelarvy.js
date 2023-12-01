@@ -21,6 +21,7 @@ const errorMessage = document.querySelector('#error-message');
 let gameOver = false;
 export const theWord = document.querySelector('#the-word');
 export const guesses = document.querySelector('#guesses')
+let highScoreList = document.querySelector('.high-score-list')
 
 let minWordLengthHard = words.filter(word => word.length >= 6 && word.length <= 9);
 let minWordLengthNormal = words.filter(word => word.length >= 10 && word.length <= 14);
@@ -157,7 +158,7 @@ const playerNameContainer = document.createElement('div');
 playerNameContainer.className = 'page';
 playerNameContainer.style.display = 'none';
 gamerContainer.insertAdjacentElement('afterend', playerNameContainer);
-const highScoreList = document.querySelector('.high-score-list')
+
 
 let gameStartTime = '';
 let playerName = '';
@@ -213,17 +214,21 @@ export function startGame() {
 	// highScoreList.append(li)
 }
 
+// highScoreList = []
+
 function savePlayerData() {
 
-	const playerData = {
-		player: playerName,
-		gissningar: keyDownCount,
-		tid: gameStartTime,
-	}
+	let playerItem = document.createElement('li');
 
+	let playerNameNode = document.createTextNode(`${playerName} | `);
+    let guessesNode = document.createTextNode(`Gissningar: ${keyDownCount} | `);
+    let timeNode = document.createTextNode(`Datum: ${gameStartTime} `);
 
+	playerItem.appendChild(playerNameNode);
+    playerItem.appendChild(guessesNode);
+    playerItem.appendChild(timeNode);
 
-	console.log("Player Data:", playerData);
+	highScoreList.appendChild(playerItem);
 }
 
 //Lista med figurens delar

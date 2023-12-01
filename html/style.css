@@ -214,10 +214,18 @@ header {
 }
 
 .high-score-list {
+	display: flex;
+	row-gap: 3em;
 	list-style-type: none;
 	padding: 5em;
 	font-size: 1.1rem;
 	border: 15px solid goldenrod;
+	background-color: bisque;
+}
+
+li > * {
+	display: flex;
+	gap: 1em;
 }
 
 /* <-------------------------------------------------------------------------------------------> */
