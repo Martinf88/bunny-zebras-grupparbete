@@ -215,7 +215,7 @@ header {
 
 .high-score-list {
 	display: flex;
-	row-gap: 3em;
+	row-gap: 0.5em;
 	list-style-type: none;
 	padding: 5em;
 	font-size: 1.1rem;

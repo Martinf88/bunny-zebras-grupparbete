@@ -216,21 +216,34 @@ export function startGame() {
 
 // highScoreList = []
 
-function savePlayerData() {
-
-	let playerItem = document.createElement('li');
-
-	let playerNameNode = document.createTextNode(`${playerName} | `);
-    let guessesNode = document.createTextNode(`Gissningar: ${keyDownCount} | `);
-    let timeNode = document.createTextNode(`Datum: ${gameStartTime} `);
-
-	playerItem.appendChild(playerNameNode);
-    playerItem.appendChild(guessesNode);
-    playerItem.appendChild(timeNode);
-
-	highScoreList.appendChild(playerItem);
-	localStorage.setItem(playerNameNode, guessesNode, timeNode );
+// Hämta sparad spelarlista från localStorage
+function getSavedPlayerList() {
+    const savedPlayerList = localStorage.getItem('playerList');
+    return savedPlayerList ? JSON.parse(savedPlayerList) : [];
 }
+
+// Spara spelarlista till localStorage
+function savePlayerList(playerList) {
+    localStorage.setItem('playerList', JSON.stringify(playerList));
+}
+
+// Spara en ny spelares data till localStorage
+function savePlayerData() {
+    const playerData = `${playerName} | Gissningar: ${keyDownCount} | Datum: ${gameStartTime}`;
+    highScoreList.innerHTML += `<li>${playerData}</li>`;
+
+    let playerList = getSavedPlayerList();
+    playerList.push(playerData);
+    savePlayerList(playerList);
+}
+
+// Återställ tidigare sparad spelarlista när sidan laddas
+window.onload = function() {
+    const savedPlayers = getSavedPlayerList();
+    savedPlayers.forEach(player => {
+        highScoreList.innerHTML += `<li>${player}</li>`;
+    });
+};
 
 //Lista med figurens delar
 const fullBody = [ground, scaffold, head, body, arms, legs]
