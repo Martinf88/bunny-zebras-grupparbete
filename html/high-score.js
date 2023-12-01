@@ -16,6 +16,7 @@ highScoreBtn.addEventListener('click', () => {
         highScoreContainer.style.display = 'flex';
 		playContainer.style.display = 'none';
 		theWord.style.display = 'none'
+		guesses.style.display = 'none'
     } 
 })
 
@@ -24,6 +25,7 @@ gameViewBtn.addEventListener('click', () => {
         playContainer.style.display = 'flex';
 		highScoreContainer.style.display = 'none';
 		theWord.style.display = 'flex'
+		guesses.style.display = 'flex'
     } 
 })
 

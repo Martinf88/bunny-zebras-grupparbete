@@ -6,7 +6,8 @@
 
 body {
 	font-family: Arial, sans-serif;
-	background-color: rgb(235, 227, 239);
+	background: linear-gradient(rgb(136, 62, 205), rgb(255, 255, 255));
+	min-height: 100vh;
 }
 
 header {
@@ -15,17 +16,18 @@ header {
 	text-align: center;
 }
 
-.nav-bar{
+.nav-bar {
 	display: flex;
 }
 
-.highscore-btn, .gameview-btn {
+.highscore-btn,
+.gameview-btn {
 	flex-grow: 1;
 }
 
 .hang-man-header {
 	font-size: 2rem;
-	text-shadow: 
+	text-shadow:
 		1px 1px 1px rgb(191, 149, 231),
 		2px 2px 2px rgb(191, 149, 231);
 
@@ -53,6 +55,10 @@ header {
 	color: red;
 }
 
+.normalEasyHard {
+	display: flex;
+}
+
 .btn-style {
 	padding: 0.4rem;
 	background-color: #252424;
@@ -62,17 +68,10 @@ header {
 	cursor: pointer;
 }
 
-.try-again {
-	text-decoration: none;
-	font-weight: bold;
-	color: white;
-	background-color: #252424;
-	padding: 1rem;
-	border-radius: 0.7rem;
-}
 
 .easy {
 	background-color: rgb(130, 236, 201);
+	cursor: pointer;
 }
 
 .normal {
@@ -82,6 +81,7 @@ header {
 
 .hard {
 	background-color: rgb(255, 148, 127);
+	cursor: pointer;
 }
 
 .play-container {
@@ -89,37 +89,44 @@ header {
 }
 
 .hangman {
-	background-color: #e3dbe2;
-	border-radius: 0 0 1em 1em;
+	background-image: url(https://i.gifer.com/ySj.gif);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 	border: 1em solid rgb(44, 43, 43);
 	border-top: none;
-	/* visibility: hidden; */
-	/* visibility: visible; */
 }
 
-#scaffold {
-	/* visibility: hidden; */
-	/* visibility: visible; */
-}
+@keyframes dangle {
 
-#head {
- 	/* visibility: hidden; */
-	/* visibility: visible; */
-}
+	0%,
+	100% {
+		transform: rotate(0deg);
+	}
 
-#body {
-	/* visibility: hidden; */
-	/* visibility: visible; */
-}
-
-#arms {
-	/* visibility: hidden; */
-	/* visibility: visible; */
+	50% {
+		transform: rotate(4deg);
+	}
 }
 
 #legs {
-	/* visibility: hidden; */
-	/* visibility: visible; */
+	animation: dangle 2.5s ease-in-out infinite;
+	transform-origin: top center;
+}
+
+#arms {
+	animation: dangle 2.5s ease-in-out infinite;
+	transform-origin: top center;
+}
+
+#body {
+	animation: dangle 2.5s ease-in-out infinite;
+	transform-origin: top center;
+}
+
+#head {
+	animation: dangle 2.5s ease-in-out infinite;
+	transform-origin: top center;
 }
 
 #the-word {
@@ -143,16 +150,36 @@ header {
 	font-size: 3rem;
 	/* text-decoration:underline dashed;
 	text-decoration-color: red; */
-/* .underline {
-	
-	text-decoration:underline dashed;
-	text-decoration-color: red;
-} */
+	/* .underline {
+		
+		text-decoration:underline dashed;
+		text-decoration-color: red;
+	} */
 }
+
 .game-over-container {
-	border: 2px solid red;
-	background-color: green;
+	color: rgb(218, 32, 32);
+	letter-spacing: 0.1em;
+	text-shadow: 1px 1px 1px #000,
+		2px 2px 2px #000;
+	font-size: 2rem;
+	padding: 3rem;
 	display: none;
+}
+
+.try-again {
+	margin: 2em 2em;
+	font-weight: bold;
+	color: white;
+	background-color: #252424;
+	padding: 1rem;
+	border-radius: 0.7rem;
+}
+
+.word-reveal,
+.guess-amount {
+	text-decoration: underline;
+	margin-top: 1rem;
 }
 
 
@@ -171,17 +198,17 @@ header {
 
 .high-score-container {
 	text-align: center;
-    height:100%;
-    align-items: center;
-    justify-content: center;
+	display: none;
+	flex-direction: column;
+	align-items: center;
 }
 
 .high-score-header {
 	color: goldenrod;
 	letter-spacing: 0.1em;
 	text-decoration: double underline;
-	text-shadow:1px 1px 1px #000,
-	2px 2px 2px #000; 
+	text-shadow: 1px 1px 1px #000,
+		2px 2px 2px #000;
 	font-size: 4rem;
 	padding: 4rem;
 }
