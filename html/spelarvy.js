@@ -64,10 +64,13 @@ export let randomWordEasy = minWordLengthEasy[randomIndexEasy].toUpperCase();
 
 export let incorrectGuesses = 0;
 const maxIncorrectGuesses = 6;
- export let keyDownCount = 0;
+export let keyDownCount = 0;
 let pressedKeyList = []
 
 let hiddenLetters = []
+
+let gameStarted = false
+
 
 function generateWord(randomWord) {
 	// hiddenLetters = Array(randomWord.length).fill('_');
@@ -75,35 +78,38 @@ function generateWord(randomWord) {
 	// theWord.innerText = hiddenLetters.join(' ');
 	// wordReveal.innerText = 'Ordet var: ' + randomWord;
 
-	
+
 }
 document.addEventListener('keydown', (event) => {
+	if (!gameStarted) {
+		return;
+	}
 
 	if (gameOver) {
 		return;
 	}
-	
-if (!event.key){
-	return 
-}
+
+	if (!event.key) {
+		return
+	}
 
 	const pressedKey = event.key.toUpperCase();
 
 	console.log(`Lista: ${pressedKeyList}`);
-	if (pressedKeyList.includes(pressedKey)){
-		
+	if (pressedKeyList.includes(pressedKey)) {
+
 		return
 	}
 	pressedKeyList.push(pressedKey)
-	
-	if	(/^[A-ZÅÄÖ]$/.test(pressedKey)) {
+
+	if (/^[A-ZÅÄÖ]$/.test(pressedKey)) {
 		guesses.innerText += `${pressedKey}-`;
-		keyDownCount ++
+		keyDownCount++
 		guessAmount.innerHTML = `<p class="guess-amount">Du gissade ${keyDownCount} gånger.</p>`; // - visar antalet gissningar
-		
+
 		let randomWordUppercase = randomWord.toUpperCase()
 		if (randomWordUppercase.includes(pressedKey)) {
-		
+
 			randomWordUppercase.split('').forEach((char, index) => {
 				if (char === pressedKey) {
 					hiddenLetters[index] = pressedKey;
@@ -133,58 +139,59 @@ const easyBtn = document.querySelector('.easy')
 export const playerInput = document.querySelector('#player-input')
 const gamerContainer = document.querySelector('.gamer-container')
 
-//döljer välj svårighetsgrad meddelande
-// difficulty.style.display = 'none'
 
-playerInput.addEventListener('input', function() {
-    if (playerInput.value.trim().length < 2) {
-        errorMessage.innertext = 'Skriv in ditt namn. Minst två bokstäver.';
-        errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort
-    } else {
-        errorMessage.innerText = '';
-        errorMessage.style.display = 'none'; // Dölj felmeddelandet om texten är tillräckligt lång
-    }
+//döljer välj svårighetsgrad meddelande
+difficulty.style.display = 'none'
+
+playerInput.addEventListener('input', function () {
+	if (playerInput.value.trim().length < 2) {
+		errorMessage.innertext = 'Skriv in ditt namn. Minst två bokstäver.';
+		errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort
+	} else {
+		errorMessage.innerText = '';
+		errorMessage.style.display = 'none'; // Dölj felmeddelandet om texten är tillräckligt lång
+	}
 });
 
 let mode = ''
 
 // Lägg till en händelselyssnare på knapparna för att kontrollera om det finns ett felmeddelande innan spelet startar
-hardBtn.addEventListener('click', function() {
+hardBtn.addEventListener('click', function () {
 	mode = 'hard'
-    if (playerInput.value.trim().length < 2) {
-        errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
-        errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
-    } else {
-        errorMessage.innerText = '';
-        errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
-        startGame();
-        generateWord();
-    }
+	if (playerInput.value.trim().length < 2) {
+		errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
+		errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
+	} else {
+		errorMessage.innerText = '';
+		errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
+		startGame();
+		generateWord();
+	}
 });
-normalBtn.addEventListener('click', function() {
+normalBtn.addEventListener('click', function () {
 	mode = 'normal'
-    if (playerInput.value.trim().length < 2) {
-        errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
-        errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
-    } else {
-        errorMessage.innerText = '';
-        errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
-        startGame();
-        generateWord();
-    }
+	if (playerInput.value.trim().length < 2) {
+		errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver.';
+		errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
+	} else {
+		errorMessage.innerText = '';
+		errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
+		startGame();
+		generateWord();
+	}
 });
 
-easyBtn.addEventListener('click', function() {
+easyBtn.addEventListener('click', function () {
 	mode = 'easy'
-    if (playerInput.value.trim().length < 2) {
-        errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
-        errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
-    } else {
-        errorMessage.textContent = '';
-        errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
-        startGame();
-        generateWord();
-    }
+	if (playerInput.value.trim().length < 2) {
+		errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
+		errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort när användaren försöker starta spelet
+	} else {
+		errorMessage.textContent = '';
+		errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
+		startGame();
+		generateWord();
+	}
 });
 
 const playerNameContainer = document.createElement('div');
@@ -197,24 +204,26 @@ let gameStartTime = '';
 let playerName = '';
 
 export function startGame() {
-	
+	gameStarted = true;
+
+	gamerContainer.style.display = 'flex';
 	let currentDate = new Date();
-    gameStartTime = currentDate.toLocaleString();
+	gameStartTime = currentDate.toLocaleString();
 	console.log(gameStartTime);
-	
-	if( mode === 'easy' ) {
+
+	if (mode === 'easy') {
 		randomWord = minWordLengthEasy[Math.floor(Math.random() * minWordLengthEasy.length)];
-//slumpa ett index
+		//slumpa ett index
 		console.log('easy', randomWord);
 	}
-	else if( mode === 'normal' ) {
+	else if (mode === 'normal') {
 		randomWord = minWordLengthNormal[Math.floor(Math.random() * minWordLengthNormal.length)];
-//slumpa ett index
+		//slumpa ett index
 		console.log('normal', randomWord);
 	}
 	else {
 		randomWord = minWordLengthHard[Math.floor(Math.random() * minWordLengthHard.length)];
-//slumpa ett index
+		//slumpa ett index
 		console.log('hard', randomWord);
 	}
 
@@ -229,9 +238,10 @@ export function startGame() {
 		errorMessage.textContent = 'Skriv in ditt namn. Minst två bokstäver.';
 		return;
 	}
-	
+
 	hideOnPlay.style.display = 'none';
 	
+
 	fullBody.forEach(element => {
 		element.style.display = "none"
 	})
@@ -244,7 +254,7 @@ export function startGame() {
 	// highScoreList.append(li)
 }
 
-function savePlayerData(){
+function savePlayerData() {
 
 	const playerData = {
 		player: playerName,
@@ -252,7 +262,7 @@ function savePlayerData(){
 		tid: gameStartTime,
 	}
 
-	
+
 
 	console.log("Player Data:", playerData);
 }
@@ -302,32 +312,34 @@ let view = 'start-view'
 let wrongGuessesCount = 0
 
 // Anropa denna i stället for window.location.reload()
-    forsokIgen.addEventListener('click', () => { 
-		gameOver = false; 
+forsokIgen.addEventListener('click', () => {
+	gameOver = false;
 	playContainer.style.display = 'flex';
 	gamerContainer.style.display = 'flex';
 	hideOnPlay.style.display = 'flex';
 	gameOverPage.style.display = 'none';
 	resetGame();
-	
+
 })
 
 function resetGame() {
-    // Clear the previous word and reset necessary variables
-    theWord.innerText = '';
-    guesses.innerText = '';
-    keyDownCount = 0;
-    pressedKeyList = [];
-    incorrectGuesses = 0;
+	gameStarted = false
+	
+	// Clearar föregående ord och nollställer valda variabler
+	theWord.innerText = '';
+	guesses.innerText = '';
+	keyDownCount = 0;
+	pressedKeyList = [];
+	incorrectGuesses = 0;
 
-    // Choose a new random word based on the selected difficulty
-    if (difficulty === 'hard') {
-        generateWord(randomWordHard);
-    } else if (difficulty === 'normal') {
-        generateWord(randomWordNormal);
-    } else if (difficulty === 'easy') {
-        generateWord(randomWordEasy);
-    }
+	// Väljer ett nytt ord baserat på svårighetsgrad
+	if (difficulty === 'hard') {
+		generateWord(randomWordHard);
+	} else if (difficulty === 'normal') {
+		generateWord(randomWordNormal);
+	} else if (difficulty === 'easy') {
+		generateWord(randomWordEasy);
+	}
 }
 
 // console.log('randomWord', randomWord);

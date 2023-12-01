@@ -184,7 +184,7 @@ header {
 
 
 .gamer-container {
-	visibility: visible;
+	display: none;
 }
 
 .hidden {
