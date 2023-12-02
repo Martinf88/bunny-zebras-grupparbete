@@ -140,6 +140,7 @@ normalBtn.addEventListener('click', function () {
 	} else {
 		errorMessage.innerText = '';
 		errorMessage.style.display = 'none'; // Starta spelet om texten är tillräckligt lång
+
 		startGame();
 	}
 });
@@ -169,6 +170,7 @@ export function startGame() {
 	gameStarted = true;
 
 	gamerContainer.style.display = 'flex';
+	keyboard.style.display = 'flex';
 	let currentDate = new Date();
 	gameStartTime = currentDate.toLocaleString();
 	console.log(gameStartTime);
@@ -207,7 +209,7 @@ export function startGame() {
 	fullBody.forEach(element => {
 		element.style.display = "none"
 	})
-	hangManHeader.innerHTML = `<h1 class="hang-man-header">Spelare: ${playerName}</h1>`;
+	hangManHeader.innerText = 'Spelare: ' + playerName;
 	hangManHeader.style.display = 'block';
 
 	//sparar spelarens namn i high-score-list. Webbläsaren kommer inte ihåg, det skall fixas.
@@ -288,12 +290,12 @@ function endGame(isWin) {
 	savePlayerData();
 }
 
-let view = 'start-view'
-let wrongGuessesCount = 0
+
 const forsokIgenIgen = document.querySelector('.forsok-igen-igen')
 // Anropa denna i stället for window.location.reload()
 forsokIgen.addEventListener('click', () => {
 	gameOver = false;
+	keyboard.style.display = 'none';
 	playContainer.style.display = 'flex';
 	gamerContainer.style.display = 'flex';
 	hideOnPlay.style.display = 'flex';
@@ -304,6 +306,7 @@ forsokIgen.addEventListener('click', () => {
 })
 forsokIgenIgen.addEventListener('click', () => {
 	gameOver = false;
+	keyboard.style.display = 'none';
 	playContainer.style.display = 'flex';
 	gamerContainer.style.display = 'flex';
 	hideOnPlay.style.display = 'flex';
@@ -323,14 +326,29 @@ function resetGame() {
 	pressedKeyList = [];
 	incorrectGuesses = 0;
 
-	// Väljer ett nytt ord baserat på svårighetsgrad
-	if (difficulty === 'hard') {
-		generateWord(randomWordHard);
-	} else if (difficulty === 'normal') {
-		generateWord(randomWordNormal);
-	} else if (difficulty === 'easy') {
-		generateWord(randomWordEasy);
-	}
+}
+
+//Tangentbord på skärmen
+const keyboard = document.querySelector('.keyboard');
+keyboard.addEventListener('click', (event) => {
+  if (event.target.tagName === 'BUTTON') {
+    const key = event.target.innerText;
+    handleOnScreenKeyPress(key);
+  }
+});
+
+function handleOnScreenKeyPress(key) {
+  simulateKeyPress({ key: key });
+}
+
+function simulateKeyPress(event) {
+  const simulatedEvent = new KeyboardEvent('keydown', {
+    key: event.key,
+    code: event.key.charCodeAt(0),
+    which: event.key.charCodeAt(0),
+  });
+
+  document.dispatchEvent(simulatedEvent);
 }
 
 // console.log('randomWord', randomWord);
