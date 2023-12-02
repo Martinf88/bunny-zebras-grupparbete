@@ -250,6 +250,15 @@ window.onload = function() {
     });
 };
 
+// rensa knapp för high-score medans man testar
+const clearBtn = document.querySelector('.clear-btn')
+function clearHighScores() {
+    localStorage.removeItem('playerList');
+    highScoreList.innerHTML = '';
+}
+clearBtn.addEventListener('click', clearHighScores);
+// rensa knapp för high-score medans man testar
+
 scoreBtn.addEventListener('click', () => {
 	
 	highScoreList.sort((a, b) => a.keyDownCount - b.keyDownCount); 
