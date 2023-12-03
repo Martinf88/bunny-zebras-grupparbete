@@ -13,6 +13,8 @@ body {
 header {
 	padding: 1.5rem;
 	text-align: center;
+	border-bottom: 0.15rem solid #e4dede;
+	background: linear-gradient(#242323, #3c3b3b);
 }
 
 .view-container {
@@ -33,11 +35,12 @@ header {
 
 .hang-man-header {
 	font-size: 2rem;
+	padding: 0.5rem 0 0.5rem 0;
+	color: #e4dede;
 	text-shadow:
-		1px 1px 1px rgb(191, 149, 231),
-		2px 2px 2px rgb(191, 149, 231);
+		1px 1px 1px rgb(5, 5, 6),
+		2px 2px 2px rgb(29, 29, 30);
 	text-decoration: underline;
-
 }
 
 .page {
@@ -86,7 +89,7 @@ input {
 
 .difficulty-btn:hover {
 	background-color: #252424;
-	color: white;
+	color: #e4dede;
 	transform: scale(1.1);
 }
 
@@ -104,9 +107,10 @@ input {
 .btn-style {
 	font-family: 'Fjalla One', sans-serif;
 	flex: 1;
+	margin-top: -0.1rem;
 	padding: 0.4rem;
 	background-color: #252424;
-	color: rgb(243, 226, 246);
+	color: #e4dede;
 	font-weight: bold;
 	font-size: 1rem;
 	cursor: pointer;
@@ -140,8 +144,8 @@ input {
 	border-radius: 0.4rem;
 	overflow: hidden;
 	background-color: #252424;
-	color: #cecbcb;
-	box-shadow: inset 0 0 0.25rem rgba(205, 202, 202, 0.861);
+	color: #e4dede;
+	box-shadow: inset 0 0 0.25rem rgba(255, 255, 255, 0.861);
 }
 
 .last {
@@ -156,7 +160,7 @@ input {
 	left: -50%;
 	width: 200%;
 	height: 200%;
-	background: radial-gradient(circle, rgba(217, 164, 241, 0.456) 0%, rgba(255, 255, 255, 0) 80%);
+	background: radial-gradient(circle, rgba(254, 254, 254, 0.456) 0%, rgba(255, 255, 255, 0) 80%);
 	transform: rotate(-30deg);
 	opacity: 0;
 	transition: opacity 0.3s ease-in-out;
@@ -266,7 +270,7 @@ input {
 	font-size: 0.5em;
 	margin: 2em 2em;
 	font-weight: bold;
-	color: white;
+	color: #e4dede;
 	background-color: #252424;
 	padding: 1rem;
 	border-radius: 0.7rem;
@@ -309,8 +313,11 @@ input {
 }
 
 .high-score-container > p {
+	color: #242323;
 	margin-bottom: 0.5rem;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
+	text-shadow: 1px 1px 1px rgb(207, 207, 210),
+	2px 2px 2px rgb(36, 36, 36);
 }
 
 .high-score-header {
@@ -320,7 +327,7 @@ input {
 	text-shadow: 1px 1px 1px #000,
 		2px 2px 2px #000;
 	font-size: 4rem;
-	padding: 4rem 0 1rem 0;
+	padding: 2rem 0 1rem 0;
 	
 }
 
@@ -334,6 +341,7 @@ input {
 	border: 15px solid goldenrod;
 	background-color: bisque;
 	flex-direction: column;
+	border-radius: 0.6rem;
 }
 
 .sort-container {
@@ -345,7 +353,7 @@ input {
 	font-size: 1rem;
 	margin: 0.5rem 0.3rem;
 	font-weight: bold;
-	color: rgb(228, 222, 222);
+	color: #e4dede;
 	background-color: #252424;
 	padding: 1rem;
 	border-radius: 0.7rem;
