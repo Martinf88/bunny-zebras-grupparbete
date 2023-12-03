@@ -22,6 +22,7 @@ header {
 .nav-bar {
 	display: flex;
 	width: 50%;
+	min-width: 21rem;
 	align-self: center;
 }
 
