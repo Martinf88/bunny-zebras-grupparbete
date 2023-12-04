@@ -60,7 +60,6 @@ document.addEventListener('keydown', (event) => {
 
 	const pressedKey = event.key.toUpperCase();
 
-	console.log(`Lista: ${pressedKeyList}`);
 	if (pressedKeyList.includes(pressedKey)) {
 
 		return
@@ -93,8 +92,7 @@ document.addEventListener('keydown', (event) => {
 				endGame(false);
 			}
 		}
-	} else {
-		console.log('Invalid input. Only alphabet letters are allowed.');
+
 	}
 });
 export const playContainer = document.querySelector('.play-container')
@@ -109,19 +107,19 @@ export const gamerContainer = document.querySelector('.gamer-container')
 difficulty.style.display = 'none'
 
 playerInput.addEventListener('input', function () {
-    const validInput = playerInput.value.replace(/[^A-Öa-ö]/g, '');
-    playerInput.value = validInput;
+	const validInput = playerInput.value.replace(/[^A-Öa-ö]/g, '');
+	playerInput.value = validInput;
 
-    if (/[^A-Öa-ö]/.test(playerInput.value)) {
-        errorMessage.innerText = 'Endast bokstäver från A till Ö är tillåtna.';
-        errorMessage.style.display = 'block';
-    } else if (validInput.trim().length < 2) {
-        errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver. A-Ö';
-        errorMessage.style.display = 'block';
-    } else {
-        errorMessage.innerText = '';
-        errorMessage.style.display = 'none';
-    }
+	if (/[^A-Öa-ö]/.test(playerInput.value)) {
+		errorMessage.innerText = 'Endast bokstäver från A till Ö är tillåtna.';
+		errorMessage.style.display = 'block';
+	} else if (validInput.trim().length < 2) {
+		errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver. A-Ö';
+		errorMessage.style.display = 'block';
+	} else {
+		errorMessage.innerText = '';
+		errorMessage.style.display = 'none';
+	}
 });
 
 let mode = ''
@@ -179,22 +177,18 @@ export function startGame() {
 	keyboard.style.display = 'flex';
 	let currentDate = new Date();
 	gameStartTime = currentDate.toLocaleString();
-	console.log(gameStartTime);
 
 	if (mode === 'easy') {
 		randomWord = minWordLengthEasy[Math.floor(Math.random() * minWordLengthEasy.length)];
 		//slumpa ett index
-		console.log('easy', randomWord);
 	}
 	else if (mode === 'normal') {
 		randomWord = minWordLengthNormal[Math.floor(Math.random() * minWordLengthNormal.length)];
 		//slumpa ett index
-		console.log('normal', randomWord);
 	}
 	else {
 		randomWord = minWordLengthHard[Math.floor(Math.random() * minWordLengthHard.length)];
 		//slumpa ett index
-		console.log('hard', randomWord);
 	}
 
 	hiddenLetters = Array(randomWord.length).fill('_');
@@ -210,7 +204,7 @@ export function startGame() {
 	}
 
 	hideOnPlay.style.display = 'none';
-	
+
 
 	fullBody.forEach(element => {
 		element.style.display = "none"
@@ -228,43 +222,43 @@ export function startGame() {
 
 // Hämta sparad spelarlista från localStorage
 function getSavedPlayerList() {
-    const savedPlayerList = localStorage.getItem('playerList');
-    return savedPlayerList ? JSON.parse(savedPlayerList) : [];
+	const savedPlayerList = localStorage.getItem('playerList');
+	return savedPlayerList ? JSON.parse(savedPlayerList) : [];
 }
 
 // Spara spelarlista till localStorage
 function savePlayerList(playerList) {
-    localStorage.setItem('playerList', JSON.stringify(playerList));
+	localStorage.setItem('playerList', JSON.stringify(playerList));
 }
 
 // Spara en ny spelares data till localStorage
 function savePlayerData() {
-	
-    const playerData = `${playerName} | Gissningar: ${keyDownCount} | Datum: ${gameStartTime}`;
-    const listItem = document.createElement('li');
+
+	const playerData = `${playerName} | Gissningar: ${keyDownCount} | Datum: ${gameStartTime}`;
+	const listItem = document.createElement('li');
 	listItem.innerText = playerData;
 	highScoreList.appendChild(listItem);
 
-    let playerList = getSavedPlayerList();
-    playerList.push(playerData);
-    savePlayerList(playerList);
+	let playerList = getSavedPlayerList();
+	playerList.push(playerData);
+	savePlayerList(playerList);
 }
 
 // Återställ tidigare sparad spelarlista när sidan laddas
-window.onload = function() {
-    const savedPlayers = getSavedPlayerList();
-    savedPlayers.forEach(player => {
-        const listItem = document.createElement('li');
-        listItem.innerText = player;
+window.onload = function () {
+	const savedPlayers = getSavedPlayerList();
+	savedPlayers.forEach(player => {
+		const listItem = document.createElement('li');
+		listItem.innerText = player;
 		highScoreList.appendChild(listItem);
-    });
+	});
 };
 
 // rensa knapp för high-score medans man testar
 const clearBtn = document.querySelector('.clear-btn')
 function clearHighScores() {
-    localStorage.removeItem('playerList');
-    highScoreList.innerText = '';
+	localStorage.removeItem('playerList');
+	highScoreList.innerText = '';
 }
 clearBtn.addEventListener('click', clearHighScores);
 // rensa knapp för high-score medans man testar
@@ -280,47 +274,47 @@ dateBtn.addEventListener('click', () => {
 
 // Funktion för att sortera highscore-listan efter antal gissningar
 function sortHighScoreListByGuesses() {
-    const playerList = Array.from(document.querySelectorAll('.high-score-list > li'));
-    const sortedList = playerList.sort((a, b) => {
-        const guessesA = getGuessesFromPlayerData(a.textContent);
-        const guessesB = getGuessesFromPlayerData(b.textContent);
-        return guessesA - guessesB;
-    });
-    displayHighScoreList(sortedList);
+	const playerList = Array.from(document.querySelectorAll('.high-score-list > li'));
+	const sortedList = playerList.sort((a, b) => {
+		const guessesA = getGuessesFromPlayerData(a.textContent);
+		const guessesB = getGuessesFromPlayerData(b.textContent);
+		return guessesA - guessesB;
+	});
+	displayHighScoreList(sortedList);
 }
 
 // Funktion för att sortera highscore-listan efter datum/tid
 function sortHighScoreListByDate() {
-    const playerList = Array.from(document.querySelectorAll('.high-score-list > li'));
-    const sortedList = playerList.sort((a, b) => {
-        const dateA = getDateFromPlayerData(a.textContent);
-        const dateB = getDateFromPlayerData(b.textContent);
-        return dateB - dateA;
-    });
-    displayHighScoreList(sortedList);
+	const playerList = Array.from(document.querySelectorAll('.high-score-list > li'));
+	const sortedList = playerList.sort((a, b) => {
+		const dateA = getDateFromPlayerData(a.textContent);
+		const dateB = getDateFromPlayerData(b.textContent);
+		return dateB - dateA;
+	});
+	displayHighScoreList(sortedList);
 }
 
 // Funktion för att visa den sorterade highscore-listan
 function displayHighScoreList(sortedList) {
-    const highScoreList = document.querySelector('.high-score-list');
-    highScoreList.innerText = ''; // Rensa listan för att lägga till den sorterade listan
-    sortedList.forEach(player => {
+	const highScoreList = document.querySelector('.high-score-list');
+	highScoreList.innerText = ''; // Rensa listan för att lägga till den sorterade listan
+	sortedList.forEach(player => {
 		const listItem = document.createElement('li');
 		listItem.innerText = player.innerText;
-        highScoreList.appendChild(listItem);
-    });
+		highScoreList.appendChild(listItem);
+	});
 }
 
 // Extrahera antal gissningar från spelardata
 function getGuessesFromPlayerData(playerData) {
-    const matches = playerData.match(/Gissningar: (\d+)/);
-    return matches ? parseInt(matches[1]) : 0;
+	const matches = playerData.match(/Gissningar: (\d+)/);
+	return matches ? parseInt(matches[1]) : 0;
 }
 
 // Extrahera datum och tid från spelardata
 function getDateFromPlayerData(playerData) {
-    const matches = playerData.match(/Datum: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/);
-    return matches ? new Date(matches[1]).getTime() : 0;
+	const matches = playerData.match(/Datum: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/);
+	return matches ? new Date(matches[1]).getTime() : 0;
 }
 
 
@@ -343,7 +337,6 @@ function endGame(isWin) {
 	gameOver = true;
 
 	if (isWin) {
-		console.log('Congratulations! You win!');
 		winLose.innerHTML = `<h2 class="win-lose">Grattis! Du vann!</h2>`;
 		gameOverPage.style.display = 'flex';
 		playContainer.style.display = 'none';
@@ -352,7 +345,6 @@ function endGame(isWin) {
 
 
 	} else {
-		console.log('Sorry! You lose!');
 		winLose.innerHTML = `<h2 class="win-lose">Tyvärr! Du förlorade!</h2>`;
 		gameOverPage.style.display = 'flex';
 		playContainer.style.display = 'none';
@@ -389,7 +381,7 @@ forsokIgenIgen.addEventListener('click', () => {
 
 function resetGame() {
 	gameStarted = false
-	
+
 	// Clearar föregående ord och nollställer valda variabler
 	theWord.innerText = '';
 	guesses.innerText = '';
@@ -402,28 +394,23 @@ function resetGame() {
 //Tangentbord på skärmen
 const keyboard = document.querySelector('.keyboard');
 keyboard.addEventListener('click', (event) => {
-  if (event.target.tagName === 'BUTTON') {
-    const key = event.target.innerText;
-    handleOnScreenKeyPress(key);
-  }
+	if (event.target.tagName === 'BUTTON') {
+		const key = event.target.innerText;
+		handleOnScreenKeyPress(key);
+	}
 });
 
 function handleOnScreenKeyPress(key) {
-  simulateKeyPress({ key: key });
+	simulateKeyPress({ key: key });
 }
 
 function simulateKeyPress(event) {
-  const simulatedEvent = new KeyboardEvent('keydown', {
-    key: event.key,
-    code: event.key.charCodeAt(0),
-    which: event.key.charCodeAt(0),
-  });
+	const simulatedEvent = new KeyboardEvent('keydown', {
+		key: event.key,
+		code: event.key.charCodeAt(0),
+		which: event.key.charCodeAt(0),
+	});
 
-  document.dispatchEvent(simulatedEvent);
+	document.dispatchEvent(simulatedEvent);
 }
 
-// console.log('randomWord', randomWord);
-
-// console.log('randomWordNormal', randomWordNormal);
-
-// console.log('randomWordEasy', randomWordEasy);
