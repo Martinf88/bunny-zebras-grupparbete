@@ -1,4 +1,5 @@
-import { words } from './svenska-ord.js'
+// import { words } from './svenska-ord.js'
+// const keyboardDiv =document.querySelector (".keyboard");
 // const getWord = document.querySelector ('#get-word');
 // const wordDisplay = document.querySelector('.word-display')
 

@@ -5,31 +5,42 @@
 }
 
 body {
-		font-family: Arial, sans-serif;
-		background: linear-gradient( rgb(136, 62, 205), rgb(255, 255, 255));
-		min-height: 100vh;
-	}
+	font-family: 'Fjalla One', sans-serif;
+	background: linear-gradient(rgb(136, 62, 205), rgb(255, 255, 255));
+	min-height: 100vh;
+}
 
 header {
 	padding: 1.5rem;
-	background-color: rgb(136, 62, 205);
 	text-align: center;
+	border-bottom: 0.15rem solid #e4dede;
+	background: linear-gradient(#242323, #3c3b3b);
 }
 
-.nav-bar{
+.view-container {
 	display: flex;
+	flex-direction: column;
+}
+.nav-bar {
+	display: flex;
+	width: 50%;
+	min-width: 21rem;
+	align-self: center;
 }
 
-.highscore-btn, .gameview-btn {
+.highscore-btn,
+.gameview-btn {
 	flex-grow: 1;
 }
 
 .hang-man-header {
 	font-size: 2rem;
-	text-shadow: 
-		1px 1px 1px rgb(191, 149, 231),
-		2px 2px 2px rgb(191, 149, 231);
-
+	padding: 0.5rem 0 0.5rem 0;
+	color: #e4dede;
+	text-shadow:
+		1px 1px 1px rgb(5, 5, 6),
+		2px 2px 2px rgb(29, 29, 30);
+	text-decoration: underline;
 }
 
 .page {
@@ -38,15 +49,52 @@ header {
 	align-items: center;
 }
 
-.difficulty-btn {
-	margin-top: 1rem;
-	padding: 0.5rem;
-	border-radius: 0.5rem;
+
+label {
+	margin: 0.5rem;
 	font-weight: bold;
 }
 
+input {
+	border: 2px solid #252424;
+	border-radius: 0.35rem;
+	height: 1.5rem;
+	max-width: 14rem;
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.4rem;
+	outline: none;
+	padding: 0.5em;
+}
+
+.normalEasyHard {
+	display: flex;
+}
+
+.normalEasyHard:last-child {
+	margin-right: 0.5rem;
+}
+
+.difficulty-btn {
+	font-family: 'Fjalla One', sans-serif;
+	color: #252424;
+	margin-top: 1rem;
+	padding: 0.5rem;
+	margin-left: 0.5rem;
+	border-radius: 0.5rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: transform 0.2s ease-in-out;
+}
+
+.difficulty-btn:hover {
+	background-color: #252424;
+	color: #e4dede;
+	transform: scale(1.1);
+}
+
 .difficulty {
-	color: black;
+	color: #252424;
 	font-weight: bold;
 }
 
@@ -54,33 +102,88 @@ header {
 	color: red;
 }
 
-.normalEasyHard  {
-	display: flex;
-} 
+
 
 .btn-style {
+	font-family: 'Fjalla One', sans-serif;
+	flex: 1;
+	margin-top: -0.1rem;
 	padding: 0.4rem;
 	background-color: #252424;
-	color: rgb(243, 226, 246);
+	color: #e4dede;
 	font-weight: bold;
 	font-size: 1rem;
 	cursor: pointer;
+	transition: transform 0.2s ease-in-out;
 }
 
+.btn-style:hover {
+	background-color: #000000;
+	transform: scale(1.05);
+}
+
+.keyboard {
+	display: none;
+	margin-top: 1rem;
+	flex-direction: column;
+}
+
+.keyboard > div {
+	margin-top: 0.5em;
+}
+.keyboard-btn {
+	font-family: 'Fjalla One', sans-serif;
+	position: relative;
+	text-align: center;
+	padding: 0.5rem;
+	min-width: 2.5rem;
+	max-width: 2.5rem;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 0.4rem;
+	overflow: hidden;
+	background-color: #252424;
+	color: #e4dede;
+	box-shadow: inset 0 0 0.25rem rgba(255, 255, 255, 0.861);
+}
+
+.last {
+	align-self: center;
+	margin-top: 0.5em;
+}
+
+.keyboard-btn::before {
+	content: "";
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle, rgba(254, 254, 254, 0.456) 0%, rgba(255, 255, 255, 0) 80%);
+	transform: rotate(-30deg);
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.keyboard-btn:hover::before {
+	opacity: 1;
+}
+
+.keyboard-btn:hover {
+	transform: scale(1.1);
+  }
 
 .easy {
 	background-color: rgb(130, 236, 201);
-	cursor: pointer;
 }
 
 .normal {
 	background-color: rgb(127, 191, 255);
-	cursor: pointer;
 }
 
 .hard {
 	background-color: rgb(255, 148, 127);
-	cursor: pointer;
 }
 
 .play-container {
@@ -88,41 +191,49 @@ header {
 }
 
 .hangman {
-	background-color: #e3dbe2;
-	border-radius: 0 0 1em 1em;
-	border: 1em solid rgb(44, 43, 43);
+	/* background-image: url(https://i.gifer.com/ySj.gif); */
+	background: linear-gradient(rgb(105, 112, 242), rgb(185, 187, 239));
+	/* background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat; */
+	border: 1em solid #252424;
 	border-top: none;
-	/* visibility: hidden; */
-	/* visibility: visible; */
 }
 
 @keyframes dangle {
-	0%, 100% {
+
+	0%,
+	100% {
 		transform: rotate(0deg);
-    }
-    50% {
+	}
+
+	50% {
 		transform: rotate(4deg);
-    }
+	}
 }
 
 #legs {
 	animation: dangle 2.5s ease-in-out infinite;
-    transform-origin: top center;
+	transform-origin: top center;
 }
+
 #arms {
 	animation: dangle 2.5s ease-in-out infinite;
-    transform-origin: top center;
+	transform-origin: top center;
 }
+
 #body {
 	animation: dangle 2.5s ease-in-out infinite;
-    transform-origin: top center;
+	transform-origin: top center;
 }
+
 #head {
 	animation: dangle 2.5s ease-in-out infinite;
-    transform-origin: top center;
+	transform-origin: top center;
 }
 
 #the-word {
+<<<<<<< HEAD
 	/* visibility: hidden; */
 	font-size: 2rem;
 	margin-top: 0.5rem;
@@ -133,6 +244,18 @@ header {
 	letter-spacing: 0.2em;
 	font-size: 1.5rem;
 	color: rgb(118, 117, 117);
+=======
+	margin: 0.5em;
+	font-size: 3rem;
+	text-align: center;
+}
+
+#guesses {
+	margin: 0 0.5em 0 0.5em;
+	letter-spacing: 0.2em;
+	font-size: 3rem;
+	text-align: center;
+>>>>>>> high-score
 }
 
 #guesses-header {
@@ -140,43 +263,50 @@ header {
 	text-decoration: underline;
 }
 
-.underline {
+/* .underline {
 	font-size: 3rem;
-	/* text-decoration:underline dashed;
-	text-decoration-color: red; */
-	/* .underline {
-		
-		text-decoration:underline dashed;
-		text-decoration-color: red;
-	} */
-}
+} */
+
 .game-over-container {
-	color: rgb(218, 32, 32);
+	color:rgb(158, 40, 222);
 	letter-spacing: 0.1em;
-	text-shadow:1px 1px 1px #000,
-	2px 2px 2px #000; 
+	text-shadow: 1px 1px 1px #000,
+		2px 2px 2px #000;
 	font-size: 2rem;
 	padding: 3rem;
 	display: none;
-} 
+	text-align: center;
+}
 
-.try-again {
+.forsok-igen {
+	font-family: 'Fjalla One', sans-serif;
+	font-size: 0.5em;
 	margin: 2em 2em;
 	font-weight: bold;
-	color: white;
+	color: #e4dede;
 	background-color: #252424;
 	padding: 1rem;
 	border-radius: 0.7rem;
+	cursor: pointer;
+	transition: transform 0.2s ease-in-out;
 }
 
-.word-reveal, .guess-amount{
+.forsok-igen:hover {
+	background-color: #000000;
+	transform: scale(1.05);
+}
+
+.word-reveal,
+.guess-amount {
 	text-decoration: underline;
 	margin-top: 1rem;
+	text-align: center;
+	font-weight: bold;
 }
 
 
 .gamer-container {
-	visibility: visible;
+	/* display: none; */
 }
 
 .hidden {
@@ -195,21 +325,69 @@ header {
 	align-items: center;
 }
 
+.high-score-container > p {
+	color: #242323;
+	margin-bottom: 0.5rem;
+	font-size: 1.5rem;
+	text-shadow: 1px 1px 1px rgb(207, 207, 210),
+	2px 2px 2px rgb(36, 36, 36);
+}
+
 .high-score-header {
 	color: goldenrod;
 	letter-spacing: 0.1em;
 	text-decoration: double underline;
-	text-shadow:1px 1px 1px #000,
-	2px 2px 2px #000; 
+	text-shadow: 1px 1px 1px #000,
+		2px 2px 2px #000;
 	font-size: 4rem;
-	padding: 4rem;
+	padding: 2rem 0 1rem 0;
+	
 }
 
 .high-score-list {
+	display: flex;
+	row-gap: 0.5rem;
 	list-style-type: none;
-	padding: 5em;
+	padding: 5rem;
+	margin-top: 1rem;
 	font-size: 1.1rem;
 	border: 15px solid goldenrod;
+	background-color: bisque;
+	flex-direction: column;
+	border-radius: 0.6rem;
 }
+
+.high-score-list li {
+	margin-bottom: 8px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 8px;
+}
+
+.high-score-list li:last-child {
+	border-bottom: none; /* Ta bort kantlinjen från sista listelementet */
+  }
+
+.sort-container {
+	display: flex;
+}
+
+.sort-btn {
+	font-family: 'Fjalla One', sans-serif;
+	font-size: 1rem;
+	margin: 0.5rem 0.3rem;
+	font-weight: bold;
+	color: #e4dede;
+	background-color: #252424;
+	padding: 1rem;
+	border-radius: 0.7rem;
+	cursor: pointer;
+	transition: transform 0.2s ease-in-out;
+}
+
+.sort-btn:hover {
+	background-color: #000000;
+	transform: scale(1.05);
+}
+
 
 /* <-------------------------------------------------------------------------------------------> */
