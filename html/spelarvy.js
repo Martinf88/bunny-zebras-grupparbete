@@ -109,13 +109,19 @@ export const gamerContainer = document.querySelector('.gamer-container')
 difficulty.style.display = 'none'
 
 playerInput.addEventListener('input', function () {
-	if (playerInput.value.trim().length < 2) {
-		errorMessage.innertext = 'Skriv in ditt namn. Minst två bokstäver.';
-		errorMessage.style.display = 'block'; // Visa felmeddelandet om texten är för kort
-	} else {
-		errorMessage.innerText = '';
-		errorMessage.style.display = 'none'; // Dölj felmeddelandet om texten är tillräckligt lång
-	}
+    const validInput = playerInput.value.replace(/[^A-Öa-ö]/g, '');
+    playerInput.value = validInput;
+
+    if (/[^A-Öa-ö]/.test(playerInput.value)) {
+        errorMessage.innerText = 'Endast bokstäver från A till Ö är tillåtna.';
+        errorMessage.style.display = 'block';
+    } else if (validInput.trim().length < 2) {
+        errorMessage.innerText = 'Skriv in ditt namn. Minst två bokstäver. A-Ö';
+        errorMessage.style.display = 'block';
+    } else {
+        errorMessage.innerText = '';
+        errorMessage.style.display = 'none';
+    }
 });
 
 let mode = ''
@@ -235,7 +241,9 @@ function savePlayerList(playerList) {
 function savePlayerData() {
 	
     const playerData = `${playerName} | Gissningar: ${keyDownCount} | Datum: ${gameStartTime}`;
-    highScoreList.innerHTML += `<li>${playerData}</li>`;
+    const listItem = document.createElement('li');
+	listItem.innerText = playerData;
+	highScoreList.appendChild(listItem);
 
     let playerList = getSavedPlayerList();
     playerList.push(playerData);
@@ -246,7 +254,8 @@ function savePlayerData() {
 window.onload = function() {
     const savedPlayers = getSavedPlayerList();
     savedPlayers.forEach(player => {
-        highScoreList.innerHTML += `<li>${player}</li>`;
+        const listItem = document.createElement('li');
+        listItem.innerText = player;
     });
 };
 
@@ -254,7 +263,7 @@ window.onload = function() {
 const clearBtn = document.querySelector('.clear-btn')
 function clearHighScores() {
     localStorage.removeItem('playerList');
-    highScoreList.innerHTML = '';
+    highScoreList.innerText = '';
 }
 clearBtn.addEventListener('click', clearHighScores);
 // rensa knapp för high-score medans man testar
@@ -293,7 +302,7 @@ function sortHighScoreListByDate() {
 // Funktion för att visa den sorterade highscore-listan
 function displayHighScoreList(sortedList) {
     const highScoreList = document.querySelector('.high-score-list');
-    highScoreList.innerHTML = ''; // Rensa listan för att lägga till den sorterade listan
+    highScoreList.innerText = ''; // Rensa listan för att lägga till den sorterade listan
     sortedList.forEach(player => {
         highScoreList.appendChild(player);
     });
