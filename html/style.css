@@ -233,29 +233,17 @@ input {
 }
 
 #the-word {
-<<<<<<< HEAD
-	/* visibility: hidden; */
-	font-size: 2rem;
-	margin-top: 0.5rem;
-}
-
-#guesses {
-	margin-top: 1.5rem;
-	letter-spacing: 0.2em;
-	font-size: 1.5rem;
-	color: rgb(118, 117, 117);
-=======
 	margin: 0.5em;
-	font-size: 3rem;
+	font-size: 2rem;
 	text-align: center;
 }
 
 #guesses {
 	margin: 0 0.5em 0 0.5em;
 	letter-spacing: 0.2em;
-	font-size: 3rem;
+	font-size: 2rem;
 	text-align: center;
->>>>>>> high-score
+	color: grey;
 }
 
 #guesses-header {
