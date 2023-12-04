@@ -344,6 +344,16 @@ input {
 	border-radius: 0.6rem;
 }
 
+.high-score-list li {
+	margin-bottom: 8px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 8px;
+}
+
+.high-score-list li:last-child {
+	border-bottom: none; /* Ta bort kantlinjen från sista listelementet */
+  }
+
 .sort-container {
 	display: flex;
 }
