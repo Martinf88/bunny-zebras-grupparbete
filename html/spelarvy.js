@@ -259,10 +259,60 @@ function clearHighScores() {
 clearBtn.addEventListener('click', clearHighScores);
 // rensa knapp för high-score medans man testar
 
+
+//anropar en funktion när man klickar
 scoreBtn.addEventListener('click', () => {
-	
-	highScoreList.sort((a, b) => a.keyDownCount - b.keyDownCount); 
+	sortHighScoreListByGuesses();
 })
+dateBtn.addEventListener('click', () => {
+	sortHighScoreListByDate();
+})
+
+// Funktion för att sortera highscore-listan efter antal gissningar
+function sortHighScoreListByGuesses() {
+    const playerList = Array.from(document.querySelectorAll('.high-score-list > li'));
+    const sortedList = playerList.sort((a, b) => {
+        const guessesA = getGuessesFromPlayerData(a.textContent);
+        const guessesB = getGuessesFromPlayerData(b.textContent);
+        return guessesA - guessesB;
+    });
+    displayHighScoreList(sortedList);
+}
+
+// Funktion för att sortera highscore-listan efter datum/tid
+function sortHighScoreListByDate() {
+    const playerList = Array.from(document.querySelectorAll('.high-score-list > li'));
+    const sortedList = playerList.sort((a, b) => {
+        const dateA = getDateFromPlayerData(a.textContent);
+        const dateB = getDateFromPlayerData(b.textContent);
+        return dateA - dateB;
+    });
+    displayHighScoreList(sortedList);
+}
+
+// Funktion för att visa den sorterade highscore-listan
+function displayHighScoreList(sortedList) {
+    const highScoreList = document.querySelector('.high-score-list');
+    highScoreList.innerHTML = ''; // Rensa listan för att lägga till den sorterade listan
+    sortedList.forEach(player => {
+        highScoreList.appendChild(player);
+    });
+}
+
+// Extrahera antal gissningar från spelardata
+function getGuessesFromPlayerData(playerData) {
+    const matches = playerData.match(/Gissningar: (\d+)/);
+    return matches ? parseInt(matches[1]) : 0;
+}
+
+// Extrahera datum och tid från spelardata
+function getDateFromPlayerData(playerData) {
+    const matches = playerData.match(/Datum: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/);
+    return matches ? new Date(matches[1]).getTime() : 0;
+}
+
+
+
 
 //Lista med figurens delar
 const fullBody = [ground, scaffold, head, body, arms, legs]
