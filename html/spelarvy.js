@@ -285,7 +285,7 @@ function sortHighScoreListByDate() {
     const sortedList = playerList.sort((a, b) => {
         const dateA = getDateFromPlayerData(a.textContent);
         const dateB = getDateFromPlayerData(b.textContent);
-        return dateA - dateB;
+        return dateB - dateA;
     });
     displayHighScoreList(sortedList);
 }
