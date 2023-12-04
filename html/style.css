@@ -124,7 +124,7 @@ input {
 
 .keyboard {
 	display: none;
-	margin-top: 1rem;
+	margin-top: 0.5rem;
 	flex-direction: column;
 }
 
@@ -234,14 +234,14 @@ input {
 
 #the-word {
 	margin: 0.5em;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	text-align: center;
 }
 
 #guesses {
 	margin: 0 0.5em 0 0.5em;
 	letter-spacing: 0.2em;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	text-align: center;
 	color: grey;
 }
