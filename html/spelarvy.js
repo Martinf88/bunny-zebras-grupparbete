@@ -256,6 +256,7 @@ window.onload = function() {
     savedPlayers.forEach(player => {
         const listItem = document.createElement('li');
         listItem.innerText = player;
+		highScoreList.appendChild(listItem);
     });
 };
 
@@ -304,7 +305,9 @@ function displayHighScoreList(sortedList) {
     const highScoreList = document.querySelector('.high-score-list');
     highScoreList.innerText = ''; // Rensa listan för att lägga till den sorterade listan
     sortedList.forEach(player => {
-        highScoreList.appendChild(player);
+		const listItem = document.createElement('li');
+		listItem.innerText = player.innerText;
+        highScoreList.appendChild(listItem);
     });
 }
 
