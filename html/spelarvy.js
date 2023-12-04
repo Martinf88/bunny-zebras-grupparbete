@@ -336,6 +336,7 @@ function endGame(isWin) {
 		gameOverPage.style.display = 'flex';
 		playContainer.style.display = 'none';
 		gamerContainer.style.display = 'none';
+		savePlayerData();
 
 
 	} else {
@@ -346,7 +347,6 @@ function endGame(isWin) {
 		gamerContainer.style.display = 'none';
 	}
 
-	savePlayerData();
 }
 
 
