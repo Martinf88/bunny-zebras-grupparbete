@@ -1,0 +1,97 @@
+@media(max-width: 350px) {
+
+	header {
+		display: none;
+	}
+
+	.keyboard > div {
+		margin-top: 0.1rem;
+	}
+
+	.keyboard > button {
+		margin-top: 0.2rem;
+	}
+
+	#the-word {
+		margin: 0;
+	}
+
+	#guesses {
+		font-size: 1.1rem;
+	}
+
+	.high-score-list {
+		padding: 1rem 0 0 0;
+	}
+
+	.high-score-header {
+		padding: 1rem;
+	}
+
+	.high-score-list > li {
+		padding: 0;
+	}
+
+	.win-lose {
+		font-size: 3rem;
+	}
+}
+
+@media(max-height: 720px) {
+	header {
+		padding: 0;
+	}
+
+	#guesses {
+		font-size: 1.3rem;
+	}
+
+	#the-word {
+		margin: 0.1rem 0 0.1rem 0;
+	}
+
+	.keyboard {
+		margin-top: 0;
+	}
+
+	.keyboard > button {
+		margin-top: 0.2rem;
+	}
+
+	.high-score-list {
+		padding: 2rem;
+	}
+}
+
+@media(max-width: 1024px) and (max-height: 600px) {
+
+	header {
+		display: none;
+	}
+
+	#the-word {
+		font-size: 1.2rem;
+	}
+
+	#guesses {
+		font-size: 1.1rem;
+	}
+
+	.keyboard > button {
+		margin-top: 0.2rem;
+	}
+
+	.hangman {
+		border: 0.2rem solid #252424;
+		border-top: none;
+		height: 280px;
+	}
+}
+
+@media(max-width: 375px) and (max-height: 740px) {
+
+	header {
+		display: none;
+	}
+
+}

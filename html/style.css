@@ -107,7 +107,7 @@ input {
 .btn-style {
 	font-family: 'Fjalla One', sans-serif;
 	flex: 1;
-	margin-top: -0.1rem;
+	margin-top: -0.2rem;
 	padding: 0.4rem;
 	background-color: #252424;
 	color: #e4dede;
@@ -196,7 +196,8 @@ input {
 	/* background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat; */
-	border: 1em solid #252424;
+	/* border: 1em solid #252424; */
+	border: 0.2rem solid #252424;
 	border-top: none;
 }
 
@@ -272,7 +273,11 @@ input {
 	margin: 2em 2em;
 	font-weight: bold;
 	color: #e4dede;
-	background-color: #252424;
+	background-color: rgb(182, 81, 232);
+	letter-spacing: 1px;
+	text-shadow: 1px 1px 1px #000,
+	2px 2px 2px #000;
+	border-color: rgb(0, 0, 0);
 	padding: 1rem;
 	border-radius: 0.7rem;
 	cursor: pointer;
@@ -280,12 +285,14 @@ input {
 }
 
 .forsok-igen:hover {
-	background-color: #000000;
+	background-color: rgb(105, 112, 242);
+	color: rgb(216, 214, 217);
 	transform: scale(1.05);
 }
 
 .word-reveal,
 .guess-amount {
+	color: rgb(158, 40, 222);
 	text-decoration: underline;
 	margin-top: 1rem;
 	text-align: center;
