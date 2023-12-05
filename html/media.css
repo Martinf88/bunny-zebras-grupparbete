@@ -106,4 +106,7 @@
 	header {
 		display: none;
 	}
+	input {
+		font-size: 1rem;
+	}
 }
