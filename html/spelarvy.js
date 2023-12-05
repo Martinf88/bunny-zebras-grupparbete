@@ -231,7 +231,7 @@ function savePlayerList(playerList) {
 // Spara en ny spelares data till localStorage
 function savePlayerData() {
 
-	const playerData = `${'Vinnare'} |${playerName} | felgissningar: ${incorrectGuesses} | Datum: ${gameStartTime}`;
+	const playerData = `${'Vinnare'} | ${playerName} | felgissningar: ${incorrectGuesses} | Datum: ${gameStartTime} | Ordets längd: ${randomWord.length}`;
 	const listItem = document.createElement('li');
 	listItem.innerText = playerData;
 	highScoreList.appendChild(listItem);
@@ -243,7 +243,7 @@ function savePlayerData() {
 
 function savePlayerDataLoss() {
 
-	const playerData = `${'Förlorare'} |${playerName} | felgissningar: ${incorrectGuesses} | Datum: ${gameStartTime}`;
+	const playerData = `${'Förlorare'} | ${playerName} | felgissningar: ${incorrectGuesses} | Datum: ${gameStartTime} | Ordets längd: ${randomWord.length}`;
 	const listItem = document.createElement('li');
 	listItem.innerText = playerData;
 	highScoreList.appendChild(listItem);
@@ -318,7 +318,7 @@ function displayHighScoreList(sortedList) {
 
 // Extrahera antal gissningar från spelardata
 function getGuessesFromPlayerData(playerData) {
-	const matches = playerData.match(/Gissningar: (\d+)/);
+	const matches = playerData.match(/felgissningar: (\d+)/);
 	return matches ? parseInt(matches[1]) : 0;
 }
 
