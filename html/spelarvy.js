@@ -318,7 +318,7 @@ function displayHighScoreList(sortedList) {
 
 // Extrahera antal gissningar från spelardata
 function getGuessesFromPlayerData(playerData) {
-	const matches = playerData.match(/felgissningar: (\d+)/);
+	const matches = playerData.match(/Felgissningar: (\d+)/);
 	return matches ? parseInt(matches[1]) : 0;
 }
 
