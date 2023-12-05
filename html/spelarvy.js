@@ -172,7 +172,7 @@ let playerName = '';
 
 export function startGame() {
 	gameStarted = true;
-
+	
 	gamerContainer.style.display = 'flex';
 	keyboard.style.display = 'flex';
 	let currentDate = new Date();
@@ -212,10 +212,7 @@ export function startGame() {
 	hangManHeader.innerText = 'Spelare: ' + playerName;
 	hangManHeader.style.display = 'block';
 
-	//sparar spelarens namn i high-score-list. Webbläsaren kommer inte ihåg, det skall fixas.
-	// const li = document.createElement('li')
-	// li.append(playerName)
-	// highScoreList.append(li)
+	console.log(randomWord);
 }
 
 // highScoreList = []
@@ -234,7 +231,7 @@ function savePlayerList(playerList) {
 // Spara en ny spelares data till localStorage
 function savePlayerData() {
 
-	const playerData = `${playerName} | Gissningar: ${keyDownCount} | Datum: ${gameStartTime}`;
+	const playerData = `${'Vinnare'} |${playerName} | Gissningar: ${keyDownCount} | Datum: ${gameStartTime}`;
 	const listItem = document.createElement('li');
 	listItem.innerText = playerData;
 	highScoreList.appendChild(listItem);
@@ -243,6 +240,20 @@ function savePlayerData() {
 	playerList.push(playerData);
 	savePlayerList(playerList);
 }
+
+function savePlayerDataLoss() {
+
+	const playerData = `${'Förlorare'} |${playerName} | Gissningar: ${keyDownCount} | Datum: ${gameStartTime}`;
+	const listItem = document.createElement('li');
+	listItem.innerText = playerData;
+	highScoreList.appendChild(listItem);
+
+	let playerList = getSavedPlayerList();
+	playerList.push(playerData);
+	savePlayerList(playerList);
+}
+
+
 
 // Återställ tidigare sparad spelarlista när sidan laddas
 window.onload = function () {
@@ -349,6 +360,7 @@ function endGame(isWin) {
 		gameOverPage.style.display = 'flex';
 		playContainer.style.display = 'none';
 		gamerContainer.style.display = 'none';
+		savePlayerDataLoss();
 	}
 
 }
