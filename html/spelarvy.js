@@ -211,8 +211,6 @@ export function startGame() {
 	})
 	hangManHeader.innerText = 'Spelare: ' + playerName;
 	hangManHeader.style.display = 'block';
-
-	console.log(randomWord);
 }
 
 // highScoreList = []
