@@ -239,6 +239,7 @@ function savePlayerData() {
 	let playerList = getSavedPlayerList();
 	playerList.push(playerData);
 	savePlayerList(playerList);
+	sortHighScoreListByGuesses()
 }
 
 function savePlayerDataLoss() {
@@ -251,6 +252,7 @@ function savePlayerDataLoss() {
 	let playerList = getSavedPlayerList();
 	playerList.push(playerData);
 	savePlayerList(playerList);
+	sortHighScoreListByGuesses()
 }
 
 
